@@ -56,7 +56,7 @@ const projects = [
   },
   {
     title: "Telegram Hedgefund Bot",
-    description: "A centralized telegram bot where groups can pool in their money, vote for traders and enjoy the profits",
+    description: "A centralized telegram bot where gcs can pool in their money, vote for traders and enjoy the profits",
     code: "https://github.com/fuyofulo/blink_bot"
   },
   {
