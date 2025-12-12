@@ -94,7 +94,7 @@ const projects = [
     title: "AI Agency Website",
     description: "Imtegrated Vapi Voice Agent and Chatbot",
     code: "https://github.com/fuyofulo/agency01",
-    link: "https://www.elarialabs.com/"
+    live: "https://www.elarialabs.com/"
   },
   {
     title: "Restaurant Management System",
