@@ -1,8 +1,29 @@
 import './App.css'
 import WhiteFireSmiley from './WhiteFireSmiley'
 import { useState } from 'react'
+import ProjectsExplorer, { type ExplorerProject } from './ProjectsExplorer'
+import solanaLogo from './assets/solanaLogoMark.svg'
+import rustcrab from './assets/rustacean-orig-noshadow.svg'
+import anchorLogo from './assets/anchor-filled-heavy-svgrepo-com.svg'
+import grpcLogo from './assets/Grpc--Streamline-Svg-Logos.svg'
+import typescriptLogo from './assets/typescript-official-svgrepo-com.svg'
+import reactLogo from './assets/react.svg'
+import nodeLogo from './assets/nodejs-icon-logo-svgrepo-com.svg'
+import prismaLogo from './assets/light-prisma-svgrepo-com.svg'
+import redisLogo from './assets/redis-svgrepo-com.svg'
+import githubLogo from './assets/github2-142-svgrepo-com.svg'
+import linkedinLogo from './assets/linkedin-svgrepo-com.svg'
+import xLogo from './assets/twitter-color-svgrepo-com.svg'
+import gmailLogo from './assets/gmail-svgrepo-com.svg'
+import raftKvPreview from './images/raft_kv.png'
+import tksLogo from './images/tks_logo_2.jpg'
+import superteamLogo from './images/superteam_logo.jpg'
+import rektoffLogo from './images/rektoff_logo.png'
+import super30Logo from './images/100xdevs_logo.jpg'
+import substackLogo from './images/substack.png'
+
+/*
 import SkillPill from './SkillPill'
-import ProjectCard from './ProjectCard'
 import solanaLogo from './assets/solanaLogoMark.svg'
 import typescriptLogo from './assets/typescript-official-svgrepo-com.svg'
 import reactLogo from './assets/react.svg'
@@ -14,17 +35,13 @@ import prismaLogo from './assets/light-prisma-svgrepo-com.svg'
 import postgresLogo from './assets/postgresql-svgrepo-com.svg'
 import redisLogo from './assets/redis-svgrepo-com.svg'
 import bunLogo from './assets/Bun.svg'
-import rustcrab from './assets/rustacean-orig-noshadow.svg';
+import rustcrab from './assets/rustacean-orig-noshadow.svg'
 import anchorLogo from './assets/anchor-filled-heavy-svgrepo-com.svg'
 import grpcLogo from './assets/Grpc--Streamline-Svg-Logos.svg'
 import scyllaLogo from './assets/scylladb-icon.svg'
-import githubLogo from './assets/github2-142-svgrepo-com.svg'
-import linkedinLogo from './assets/linkedin-svgrepo-com.svg'
-import xLogo from './assets/twitter-color-svgrepo-com.svg'
-import gmailLogo from './assets/gmail-svgrepo-com.svg'
-import vscoLogo from './assets/vsco2-svgrepo-com.svg'
-import instagramLogo from './assets/instagram-1-svgrepo-com.svg'
+*/
 
+/*
 const skills: { name: string; imageSrc?: string; iconText?: string }[] = [
   { name: 'Solana', imageSrc: solanaLogo },
   { name: 'Rust', imageSrc: rustcrab },
@@ -42,86 +59,197 @@ const skills: { name: string; imageSrc?: string; iconText?: string }[] = [
   { name: 'Redis', imageSrc: redisLogo },
   { name: 'Bun', imageSrc: bunLogo },
 ]
+*/
 
-const projects = [
+const featuredProjects: ExplorerProject[] = [
   {
-    title: "Hedge Fund Solana Program",
-    description: "Vault Contract: Implements flash loan for swaps and hash based approval for limit and DCA orders on jupiter",
-    code: "https://github.com/fuyofulo/fund_contract",
+    title: 'raft_kv',
+    label: 'Distributed Systems',
+    description:
+      'Distributed key-value store in Rust using Raft consensus for replication, leader election, and fault-tolerant state synchronization.',
+    code: 'https://github.com/fuyofulo/raft_kv',
+    article: 'https://x.com/fuyofulo/status/2020674400404881615',
+    imageSrc: raftKvPreview,
+    tags: [
+      { label: 'Rust', imageSrc: rustcrab },
+      { label: 'gRPC', imageSrc: grpcLogo },
+    ],
   },
+  {
+    title: 'Pumpswap Indexer',
+    label: 'Solana Infra',
+    description:
+      'Yellowstone gRPC indexer that parses raw on-chain streams and decodes buy/sell trades against program IDL definitions.',
+    code: 'https://github.com/fuyofulo/pumpswap-trades-indexer',
+    article: '',
+    imageSrc: raftKvPreview,
+    tags: [
+      { label: 'Rust', imageSrc: rustcrab },
+      { label: 'Solana', imageSrc: solanaLogo },
+      { label: 'gRPC', imageSrc: grpcLogo },
+    ],
+  },
+  {
+    title: 'Hedge Fund Solana Program',
+    label: 'Solana Anchor Program',
+    description:
+      'Vault contract with flash-loan swap execution and hash-based approval flow for limit and DCA order automation on Jupiter.',
+    code: 'https://github.com/fuyofulo/fund_contract',
+    article: '',
+    imageSrc: raftKvPreview,
+    tags: [
+      { label: 'Solana', imageSrc: solanaLogo },
+      { label: 'Rust', imageSrc: rustcrab },
+      { label: 'Anchor', imageSrc: anchorLogo },
+    ],
+  },
+]
+
+const otherProjects: ExplorerProject[] = [
   {
     title: 'Wide Sandwich Attack Detection',
-    description: 'Rust script to parse raw rpc transactions for pumpfun tokens and detect for wide sandwich attacks within n+3 slots',
+    description:
+      'Rust script that parses raw RPC transaction streams for pumpfun tokens and detects wide sandwich patterns within n+3 slots.',
     code: 'https://github.com/fuyofulo/astra-assignment',
+    tags: [
+      { label: 'Rust', imageSrc: rustcrab },
+      { label: 'Solana', imageSrc: solanaLogo },
+      { label: 'gRPC', imageSrc: grpcLogo },
+    ],
   },
   {
-    title: "Telegram Hedgefund Bot",
-    description: "A centralized telegram bot where gcs can pool in their money, vote for traders and enjoy the profits",
-    code: "https://github.com/fuyofulo/blink_bot"
-  },
-  {
-    title: "Pumpswap Trade Indexer",
-    description: "indexer that uses yellowstone grpc to get raw data and parse buy and sell trades according to the IDL",
-    code: "https://github.com/fuyofulo/pumpswap-trades-indexer"
+    title: 'Telegram Hedgefund Bot',
+    description:
+      'Centralized Telegram bot where groups can pool capital, vote for traders, and track strategy outcomes.',
+    code: 'https://github.com/fuyofulo/blink_bot',
+    tags: [
+      { label: 'Solana', imageSrc: solanaLogo },
+      { label: 'TypeScript', imageSrc: typescriptLogo },
+      { label: 'Node.js', imageSrc: nodeLogo },
+      { label: 'Prisma', imageSrc: prismaLogo },
+    ],
   },
   {
     title: 'Solana Token TSS',
-    description: "Extended ZenGo's solana-tss library to allow transfer of spl tokens from a MuSig2 aggregated wallet",
+    description:
+      "Extended ZenGo's solana-tss library to support SPL token transfers from a MuSig2 aggregated wallet.",
     code: 'https://github.com/fuyofulo/solana-token-tss',
+    tags: [
+      { label: 'Rust', imageSrc: rustcrab },
+      { label: 'Solana', imageSrc: solanaLogo },
+    ],
   },
   {
     title: 'Orderbook',
-    description: 'Single threaded orderbook in rust',
-    code: "https://github.com/fuyofulo/single-threaded-orderbook"
+    description: 'Single-threaded orderbook engine in Rust with deterministic matching flow.',
+    code: 'https://github.com/fuyofulo/single-threaded-orderbook',
+    tags: [
+      { label: 'Rust', imageSrc: rustcrab },
+    ],
   },
   {
     title: 'Axoria',
-    description: 'Token launchpad on solana. Airdrop SOL on devnet, create and mint new tokens',
+    description: 'Solana token launchpad for devnet airdrops, token creation, and mint flows.',
     code: 'https://github.com/fuyofulo/axoria',
-    live: 'https://axoria.vercel.app/',
+    tags: [
+      { label: 'Solana', imageSrc: solanaLogo },
+      { label: 'React', imageSrc: reactLogo },
+    ],
   },
   {
-    title: "CFD Platform",
-    description: "Exness clone",
-    code: "https://github.com/fuyofulo/exness"
+    title: 'CFD Platform',
+    description: 'Exness clone focused on market and account workflow replication.',
+    code: 'https://github.com/fuyofulo/exness',
+    tags: [
+      { label: 'TypeScript', imageSrc: typescriptLogo },
+      { label: 'Node.js', imageSrc: nodeLogo },
+      { label: 'React', imageSrc: reactLogo },
+      { label: 'Prisma', imageSrc: prismaLogo },
+    ],
   },
   {
-    title: "Escrow Programs",
-    description: "Basic solana escrow programs",
-    code: "https://github.com/fuyofulo/escrow-programs",
+    title: 'Escrow Programs',
+    description: 'Collection of baseline Solana escrow program implementations.',
+    code: 'https://github.com/fuyofulo/escrow-programs',
+    tags: [
+      { label: 'Solana', imageSrc: solanaLogo },
+      { label: 'Anchor', imageSrc: anchorLogo },
+      { label: 'Rust', imageSrc: rustcrab },
+      { label: 'Redis', imageSrc: redisLogo },
+    ],
   },
   {
-    title: "AI Agency Website",
-    description: "Imtegrated Vapi Voice Agent and Chatbot",
-    code: "https://github.com/fuyofulo/agency01",
-    live: "https://www.elarialabs.com/"
+    title: 'AI Agency Website',
+    description: 'Agency site integrating a Vapi voice agent and chatbot workflows.',
+    code: 'https://github.com/fuyofulo/agency01',
+    tags: [
+      { label: 'React', imageSrc: reactLogo },
+    ],
   },
   {
-    title: "Restaurant Management System",
-    description: "Wrote MCP server from scratch and integrated with chat interface for operations",
-    code: "https://github.com/fuyofulo/booking-system",
+    title: 'Restaurant Management System',
+    description:
+      'Built an MCP server from scratch and integrated it with a chat interface for operations.',
+    code: 'https://github.com/fuyofulo/booking-system',
+    tags: [
+      { label: 'TypeScript', imageSrc: typescriptLogo },
+      { label: 'Node.js', imageSrc: nodeLogo },
+      { label: 'Prisma', imageSrc: prismaLogo },
+      { label: 'React', imageSrc: reactLogo },
+    ],
   },
   {
-    title: "Room Chat",
-    description: "Chat Application in typescript",
-    code: "https://github.com/fuyofulo/chat-application",
-    live: "https://roomchat123.vercel.app/"
+    title: 'Room Chat',
+    description: 'Realtime room-based chat application written in TypeScript.',
+    code: 'https://github.com/fuyofulo/chat-application',
+    tags: [
+      { label: 'TypeScript', imageSrc: typescriptLogo },
+      { label: 'Node.js', imageSrc: nodeLogo },
+      { label: 'React', imageSrc: reactLogo },
+    ],
   },
 ]
 
 const socials = [
   { name: 'GitHub', imageSrc: githubLogo, iconText: 'GH', href: 'https://github.com/fuyofulo', type: 'link' },
   { name: 'LinkedIn', imageSrc: linkedinLogo, iconText: 'IN', href: 'https://linkedin.com/in/fuyofulo', type: 'link' },
-  {
-    name: 'Instagram',
-    imageSrc: instagramLogo,
-    iconText: 'IG',
-    href: 'https://www.instagram.com/fuyofulo?igsh=MWZ1MTM5Zmdwd2FteQ==',
-    type: 'link',
-  },
   { name: 'X', imageSrc: xLogo, iconText: 'X', href: 'https://x.com/fuyofulo', type: 'link' },
-  { name: 'VSCO', imageSrc: vscoLogo, iconText: 'VS', href: 'https://vsco.co/fuyofulo', type: 'link' },
   { name: 'Email', imageSrc: gmailLogo, iconText: '@', href: 'fuyofulo@gmail.com', type: 'copy' },
+]
+
+const highlights = [
+  {
+    logoSrc: tksLogo,
+    logoAlt: 'The Knowledge Society logo',
+    title: 'The Knowledge Society',
+    ribbonTitle: 'TKS',
+    detail: 'Alumni, 2022-2024',
+    href: 'https://www.tks.world/',
+  },
+  {
+    logoSrc: super30Logo,
+    logoAlt: '100xDevs logo',
+    title: '100xDevs',
+    ribbonTitle: '100xDevs',
+    detail: 'Student of Super 30 2.0',
+    href: 'https://x.com/100xSchool',
+  },
+  {
+    logoSrc: superteamLogo,
+    logoAlt: 'Superteam logo',
+    title: 'Superteam',
+    ribbonTitle: 'Superteam',
+    detail: 'Member, Graduated Superdevs 2025 in top 20',
+    href: 'https://x.com/superteam',
+  },
+  {
+    logoSrc: rektoffLogo,
+    logoAlt: 'Rektoff logo',
+    title: 'Rektoff',
+    ribbonTitle: 'Rektoff',
+    detail: 'Solana and Rust Security bootcamp',
+    href: 'https://x.com/rektoff_xyz',
+  },
 ]
 
 function App() {
@@ -150,27 +278,61 @@ function App() {
       <div className="content-shell">
         <header className="navbar">
           <div className="nav-brand">fuyofulo</div>
-          <nav className="nav-links" aria-label="Primary">
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#socials">Socials</a>
-          </nav>
         </header>
 
-        <main className="hero" id="hero">
-          <div className="hero__content">
-            <p className="eyebrow mono">yo! I am </p>
-            <h1>fuyofulo</h1>
-            <p className="lede">
-              I am a software engineer cranking out projects in the Solana ecosystem. I studied computer science in university and am an alumni of the knowledge society. 
-            </p>
-          </div>
-          <div className="hero__visual" aria-hidden="true">
-            <WhiteFireSmiley />
-          </div>
-        </main>
+        <div className="intro-stack">
+          <main className="hero" id="hero">
+            <div className="hero__content">
+              <p className="eyebrow mono">yo! I am </p>
+              <h1>fuyofulo</h1>
+              <p className="lede">
+                I am 22 years old. I graduated university with a bachelors in computer science.
+                I spend most of my time building distributed systems in Rust, experimenting on Solana, and shipping things that probably shouldn’t run in production (yet).
+              </p>
+              <div className="hero-socials" aria-label="Social links">
+                {socials.map((item) =>
+                  item.type === 'copy' ? (
+                    <button
+                      key={item.name}
+                      className="hero-social social-pill--copy"
+                      onClick={() => handleCopy(item.href)}
+                      type="button"
+                      aria-label={item.name}
+                      title={item.name}
+                    >
+                      {item.imageSrc ? (
+                        <img src={item.imageSrc} alt={item.name} className="hero-social__img" />
+                      ) : (
+                        <span className="hero-social__icon">{item.iconText}</span>
+                      )}
+                      {copied && item.name === 'Email' ? <div className="copy-toast">Email copied</div> : null}
+                    </button>
+                  ) : (
+                    <a
+                      key={item.name}
+                      className="hero-social"
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={item.name}
+                      title={item.name}
+                    >
+                      {item.imageSrc ? (
+                        <img src={item.imageSrc} alt={item.name} className="hero-social__img" />
+                      ) : (
+                        <span className="hero-social__icon">{item.iconText}</span>
+                      )}
+                    </a>
+                  )
+                )}
+              </div>
+            </div>
+            <div className="hero__visual" aria-hidden="true">
+              <WhiteFireSmiley />
+            </div>
+          </main>
 
-        <section className="section skills" id="skills" aria-labelledby="skills-title">
+        {/* <section className="section skills" id="skills" aria-labelledby="skills-title">
           <div className="section__header">
             <p className="eyebrow eyebrow--bold" id="skills-title">Tech Stack</p>
             <p className="lede section__lede skills-subtext">
@@ -187,63 +349,64 @@ function App() {
               />
             ))}
           </div>
-        </section>
+        </section> */}
 
-        <section className="section projects" id="projects" aria-labelledby="projects-title">
-          <div className="projects-panel">
-            <div className="section__header">
-              <p className="eyebrow eyebrow--bold" id="projects-title">Projects</p>
-            </div>
-            <div className="projects-grid">
-              {projects.map((project) => (
-                <ProjectCard key={project.title} {...project} />
-              ))}
-            </div>
-          </div>
-        </section>
+          <section className="section proof-ribbon" aria-label="Highlights ribbon (alternative)">
+            <div className="proof-ribbon__layout">
+              <div className="proof-ribbon__stack">
+                {highlights.map((item) => (
+                  <div className="proof-ribbon__item" key={`ribbon-${item.title}`}>
+                    <img src={item.logoSrc} alt={item.logoAlt} className="proof-ribbon__logo" />
+                    <p className="proof-ribbon__text">
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="proof-ribbon__title-link"
+                        aria-label={`${item.title} website`}
+                      >
+                        <span className="proof-ribbon__title">{item.ribbonTitle ?? item.title}</span>
+                      </a>
+                      <span className="proof-ribbon__sep" aria-hidden>·</span>
+                      <span className="proof-ribbon__detail">{item.detail}</span>
+                    </p>
+                  </div>
+                ))}
+              </div>
 
-        <section className="section socials" id="socials" aria-labelledby="socials-title">
-          <div className="socials-panel">
-            <div className="section__header">
-              <p className="eyebrow" id="socials-title">Socials</p>
-            </div>
-            <div className="socials-row">
-              {socials.map((item) => (
-                item.type === 'copy' ? (
-                  <button
-                    key={item.name}
-                    className="social-pill social-pill--copy"
-                    onClick={() => handleCopy(item.href)}
-                    type="button"
-                  >
-                    {item.imageSrc ? (
-                      <img src={item.imageSrc} alt={item.name} className="social-pill__img" />
-                    ) : (
-                      <span className="social-pill__icon">{item.iconText}</span>
-                    )}
-                    <span className="social-pill__label">{item.name}</span>
-                    {copied && item.name === 'Email' ? <div className="copy-toast">Email copied</div> : null}
-                  </button>
-                ) : (
+              <aside className="newsletter-card" aria-label="Newsletter">
+                <h3 className="newsletter-card__title">fuyo&apos;s public diary</h3>
+                <p className="newsletter-card__copy">
+                  subscribe to my newsletter to follow my journey
+                </p>
+                <div className="newsletter-card__cta-row">
+                  <img src={substackLogo} alt="" className="newsletter-card__logo" aria-hidden="true" />
                   <a
-                    key={item.name}
-                    className="social-pill"
-                    href={item.href}
+                    className="newsletter-card__cta"
+                    href="https://fuyofulo.substack.com"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {item.imageSrc ? (
-                      <img src={item.imageSrc} alt={item.name} className="social-pill__img" />
-                    ) : (
-                      <span className="social-pill__icon">{item.iconText}</span>
-                    )}
-                    <span className="social-pill__label">{item.name}</span>
+                    <span className="newsletter-card__cta-label">go to newsletter</span>
                   </a>
-                )
-              ))}
+                </div>
+              </aside>
             </div>
-          </div>
-        </section>
+          </section>
+
+          <section className="section projects" id="projects" aria-labelledby="projects-title">
+            <div className="projects-panel">
+              <div className="section__header">
+                <p className="eyebrow eyebrow--bold" id="projects-title">Projects</p>
+              </div>
+              <ProjectsExplorer
+                featuredProjects={featuredProjects}
+                otherProjects={otherProjects}
+              />
+            </div>
+          </section>
+        </div>
+
       </div>
     </div>
   )

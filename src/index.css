@@ -1,5 +1,10 @@
 :root {
-  font-family: 'Roboto Mono', 'JetBrains Mono', 'Fira Code', monospace;
+  /* Change site fonts here */
+  --font-ui: 'Roboto Mono', 'JetBrains Mono', 'Fira Code', monospace;
+  --font-mono: 'Roboto Mono', 'JetBrains Mono', 'Fira Code', monospace;
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+
+  font-family: var(--font-mono);
   line-height: 1.6;
   font-weight: 400;
   color: #e9ecf2;
@@ -10,10 +15,330 @@
   -moz-osx-font-smoothing: grayscale;
   --bg-color: #0a0a0a;
   --grain-color: 0, 0, 0;
-  --nebula-1: rgba(93, 76, 182, 0.22);
-  --nebula-2: rgba(34, 152, 199, 0.18);
-  --nebula-3: rgba(190, 92, 170, 0.16);
-  --nebula-deep: #02040a;
+
+  /* Original gradient palette (kept for easy rollback) */
+  --nebula-original-1: rgba(93, 76, 182, 0.22);
+  --nebula-original-2: rgba(34, 152, 199, 0.18);
+  --nebula-original-3: rgba(190, 92, 170, 0.16);
+  --nebula-original-4: rgba(95, 116, 255, 0.1);
+  --nebula-original-base-1: #010207;
+  --nebula-original-base-2: #02040a;
+  --nebula-original-base-3: #01030a;
+
+  /* New gradient palette: arctic aurora */
+  --nebula-aurora-1: rgba(42, 132, 255, 0.24);
+  --nebula-aurora-2: rgba(45, 210, 190, 0.17);
+  --nebula-aurora-3: rgba(96, 120, 255, 0.14);
+  --nebula-aurora-4: rgba(118, 236, 255, 0.11);
+  --nebula-aurora-base-1: #01040a;
+  --nebula-aurora-base-2: #041122;
+  --nebula-aurora-base-3: #02050f;
+
+  /* Option: ember flux */
+  --nebula-ember-1: rgba(255, 97, 60, 0.2);
+  --nebula-ember-2: rgba(255, 173, 84, 0.16);
+  --nebula-ember-3: rgba(223, 91, 255, 0.12);
+  --nebula-ember-4: rgba(255, 119, 87, 0.1);
+  --nebula-ember-base-1: #090205;
+  --nebula-ember-base-2: #18070d;
+  --nebula-ember-base-3: #10030a;
+
+  /* Option: synthwave dusk */
+  --nebula-synth-1: rgba(88, 121, 255, 0.24);
+  --nebula-synth-2: rgba(255, 92, 196, 0.17);
+  --nebula-synth-3: rgba(104, 225, 255, 0.12);
+  --nebula-synth-4: rgba(158, 107, 255, 0.12);
+  --nebula-synth-base-1: #03030d;
+  --nebula-synth-base-2: #110927;
+  --nebula-synth-base-3: #060418;
+
+  /* Option: deep ocean */
+  --nebula-ocean-1: rgba(42, 127, 255, 0.2);
+  --nebula-ocean-2: rgba(16, 183, 181, 0.14);
+  --nebula-ocean-3: rgba(83, 126, 198, 0.12);
+  --nebula-ocean-4: rgba(91, 203, 241, 0.09);
+  --nebula-ocean-base-1: #01050b;
+  --nebula-ocean-base-2: #051523;
+  --nebula-ocean-base-3: #03101b;
+
+  /* Option: graphite haze */
+  --nebula-graphite-1: rgba(144, 164, 191, 0.14);
+  --nebula-graphite-2: rgba(111, 131, 163, 0.12);
+  --nebula-graphite-3: rgba(176, 192, 217, 0.1);
+  --nebula-graphite-4: rgba(132, 152, 184, 0.08);
+  --nebula-graphite-base-1: #020306;
+  --nebula-graphite-base-2: #0a1119;
+  --nebula-graphite-base-3: #05080f;
+
+  /* Option: obsidian (mostly black, slight steel tint) */
+  --nebula-obsidian-1: rgba(120, 135, 160, 0.1);
+  --nebula-obsidian-2: rgba(90, 106, 132, 0.08);
+  --nebula-obsidian-3: rgba(154, 167, 191, 0.07);
+  --nebula-obsidian-4: rgba(114, 126, 150, 0.06);
+  --nebula-obsidian-base-1: #010102;
+  --nebula-obsidian-base-2: #06080d;
+  --nebula-obsidian-base-3: #020306;
+
+  /* Option: void (deep black + faint indigo) */
+  --nebula-void-1: rgba(72, 84, 132, 0.11);
+  --nebula-void-2: rgba(58, 73, 122, 0.09);
+  --nebula-void-3: rgba(88, 103, 160, 0.08);
+  --nebula-void-4: rgba(101, 117, 170, 0.06);
+  --nebula-void-base-1: #000103;
+  --nebula-void-base-2: #050915;
+  --nebula-void-base-3: #01030a;
+
+  /* Option: coal (charcoal black + subtle warm gray) */
+  --nebula-coal-1: rgba(158, 146, 140, 0.1);
+  --nebula-coal-2: rgba(126, 117, 112, 0.08);
+  --nebula-coal-3: rgba(177, 165, 156, 0.07);
+  --nebula-coal-4: rgba(146, 135, 128, 0.06);
+  --nebula-coal-base-1: #050505;
+  --nebula-coal-base-2: #101010;
+  --nebula-coal-base-3: #070707;
+
+  /* Option: abyss (black with very faint cyan edge) */
+  --nebula-abyss-1: rgba(66, 120, 132, 0.1);
+  --nebula-abyss-2: rgba(52, 96, 111, 0.08);
+  --nebula-abyss-3: rgba(80, 146, 167, 0.07);
+  --nebula-abyss-4: rgba(60, 117, 136, 0.06);
+  --nebula-abyss-base-1: #010203;
+  --nebula-abyss-base-2: #040b10;
+  --nebula-abyss-base-3: #010508;
+
+  /* Active palette default (aurora) */
+  --nebula-1: var(--nebula-aurora-1);
+  --nebula-2: var(--nebula-aurora-2);
+  --nebula-3: var(--nebula-aurora-3);
+  --nebula-4: var(--nebula-aurora-4);
+  --nebula-base-1: var(--nebula-aurora-base-1);
+  --nebula-base-2: var(--nebula-aurora-base-2);
+  --nebula-base-3: var(--nebula-aurora-base-3);
+  --nebula-deep: var(--nebula-base-2);
+
+  /* UI accent system (default: aurora) */
+  --ui-border: rgba(44, 112, 164, 0.42);
+  --ui-border-soft: rgba(92, 165, 219, 0.24);
+  --ui-inner-border: rgba(232, 245, 255, 0.06);
+  --ui-glow: rgba(76, 171, 255, 0.34);
+  --ui-glow-strong: rgba(82, 184, 255, 0.52);
+  --ui-tag-glow: rgba(71, 152, 228, 0.3);
+  --ui-accent-bg: rgba(60, 150, 230, 0.16);
+  --ui-accent-border: rgba(183, 228, 255, 0.35);
+  --ui-accent-hover-border: rgba(238, 249, 255, 0.85);
+  --ui-accent-hover-text: #08243a;
+  --ui-social-hover: rgba(120, 200, 255, 0.24);
+  --ui-surface-subtle: rgba(255, 255, 255, 0.02);
+}
+
+:root[data-nebula-theme='original'] {
+  --nebula-1: var(--nebula-original-1);
+  --nebula-2: var(--nebula-original-2);
+  --nebula-3: var(--nebula-original-3);
+  --nebula-4: var(--nebula-original-4);
+  --nebula-base-1: var(--nebula-original-base-1);
+  --nebula-base-2: var(--nebula-original-base-2);
+  --nebula-base-3: var(--nebula-original-base-3);
+  --ui-border: rgba(86, 58, 154, 0.45);
+  --ui-border-soft: rgba(106, 84, 170, 0.28);
+  --ui-inner-border: rgba(245, 240, 255, 0.06);
+  --ui-glow: rgba(143, 98, 255, 0.35);
+  --ui-glow-strong: rgba(143, 98, 255, 0.55);
+  --ui-tag-glow: rgba(109, 74, 190, 0.32);
+  --ui-accent-bg: rgba(143, 98, 255, 0.14);
+  --ui-accent-border: rgba(215, 198, 255, 0.38);
+  --ui-accent-hover-border: rgba(247, 240, 255, 0.86);
+  --ui-accent-hover-text: #311f56;
+  --ui-social-hover: rgba(172, 140, 255, 0.24);
+}
+
+:root[data-nebula-theme='aurora'] {
+  --nebula-1: var(--nebula-aurora-1);
+  --nebula-2: var(--nebula-aurora-2);
+  --nebula-3: var(--nebula-aurora-3);
+  --nebula-4: var(--nebula-aurora-4);
+  --nebula-base-1: var(--nebula-aurora-base-1);
+  --nebula-base-2: var(--nebula-aurora-base-2);
+  --nebula-base-3: var(--nebula-aurora-base-3);
+  --ui-border: rgba(44, 112, 164, 0.42);
+  --ui-border-soft: rgba(92, 165, 219, 0.24);
+  --ui-inner-border: rgba(232, 245, 255, 0.06);
+  --ui-glow: rgba(76, 171, 255, 0.34);
+  --ui-glow-strong: rgba(82, 184, 255, 0.52);
+  --ui-tag-glow: rgba(71, 152, 228, 0.3);
+  --ui-accent-bg: rgba(60, 150, 230, 0.16);
+  --ui-accent-border: rgba(183, 228, 255, 0.35);
+  --ui-accent-hover-border: rgba(238, 249, 255, 0.85);
+  --ui-accent-hover-text: #08243a;
+  --ui-social-hover: rgba(120, 200, 255, 0.24);
+}
+
+:root[data-nebula-theme='ember'] {
+  --nebula-1: var(--nebula-ember-1);
+  --nebula-2: var(--nebula-ember-2);
+  --nebula-3: var(--nebula-ember-3);
+  --nebula-4: var(--nebula-ember-4);
+  --nebula-base-1: var(--nebula-ember-base-1);
+  --nebula-base-2: var(--nebula-ember-base-2);
+  --nebula-base-3: var(--nebula-ember-base-3);
+  --ui-border: rgba(149, 79, 54, 0.45);
+  --ui-border-soft: rgba(208, 126, 79, 0.26);
+  --ui-inner-border: rgba(255, 238, 230, 0.06);
+  --ui-glow: rgba(255, 125, 74, 0.34);
+  --ui-glow-strong: rgba(255, 131, 83, 0.5);
+  --ui-tag-glow: rgba(229, 111, 71, 0.3);
+  --ui-accent-bg: rgba(255, 123, 70, 0.16);
+  --ui-accent-border: rgba(255, 207, 179, 0.36);
+  --ui-accent-hover-border: rgba(255, 236, 224, 0.86);
+  --ui-accent-hover-text: #3a170d;
+  --ui-social-hover: rgba(255, 155, 115, 0.24);
+}
+
+:root[data-nebula-theme='synth'] {
+  --nebula-1: var(--nebula-synth-1);
+  --nebula-2: var(--nebula-synth-2);
+  --nebula-3: var(--nebula-synth-3);
+  --nebula-4: var(--nebula-synth-4);
+  --nebula-base-1: var(--nebula-synth-base-1);
+  --nebula-base-2: var(--nebula-synth-base-2);
+  --nebula-base-3: var(--nebula-synth-base-3);
+  --ui-border: rgba(121, 82, 185, 0.44);
+  --ui-border-soft: rgba(175, 106, 206, 0.26);
+  --ui-inner-border: rgba(246, 234, 255, 0.06);
+  --ui-glow: rgba(191, 117, 255, 0.36);
+  --ui-glow-strong: rgba(198, 126, 255, 0.54);
+  --ui-tag-glow: rgba(163, 107, 240, 0.32);
+  --ui-accent-bg: rgba(181, 113, 255, 0.16);
+  --ui-accent-border: rgba(236, 203, 255, 0.36);
+  --ui-accent-hover-border: rgba(250, 236, 255, 0.86);
+  --ui-accent-hover-text: #2c0f41;
+  --ui-social-hover: rgba(201, 149, 255, 0.24);
+}
+
+:root[data-nebula-theme='ocean'] {
+  --nebula-1: var(--nebula-ocean-1);
+  --nebula-2: var(--nebula-ocean-2);
+  --nebula-3: var(--nebula-ocean-3);
+  --nebula-4: var(--nebula-ocean-4);
+  --nebula-base-1: var(--nebula-ocean-base-1);
+  --nebula-base-2: var(--nebula-ocean-base-2);
+  --nebula-base-3: var(--nebula-ocean-base-3);
+  --ui-border: rgba(45, 105, 144, 0.43);
+  --ui-border-soft: rgba(88, 152, 191, 0.25);
+  --ui-inner-border: rgba(230, 247, 252, 0.06);
+  --ui-glow: rgba(86, 190, 224, 0.33);
+  --ui-glow-strong: rgba(92, 198, 229, 0.5);
+  --ui-tag-glow: rgba(74, 170, 209, 0.3);
+  --ui-accent-bg: rgba(72, 165, 205, 0.16);
+  --ui-accent-border: rgba(184, 230, 247, 0.35);
+  --ui-accent-hover-border: rgba(237, 251, 255, 0.85);
+  --ui-accent-hover-text: #0d2933;
+  --ui-social-hover: rgba(120, 208, 238, 0.24);
+}
+
+:root[data-nebula-theme='graphite'] {
+  --nebula-1: var(--nebula-graphite-1);
+  --nebula-2: var(--nebula-graphite-2);
+  --nebula-3: var(--nebula-graphite-3);
+  --nebula-4: var(--nebula-graphite-4);
+  --nebula-base-1: var(--nebula-graphite-base-1);
+  --nebula-base-2: var(--nebula-graphite-base-2);
+  --nebula-base-3: var(--nebula-graphite-base-3);
+  --ui-border: rgba(114, 130, 155, 0.42);
+  --ui-border-soft: rgba(144, 159, 182, 0.24);
+  --ui-inner-border: rgba(239, 244, 251, 0.06);
+  --ui-glow: rgba(170, 184, 205, 0.26);
+  --ui-glow-strong: rgba(183, 198, 220, 0.38);
+  --ui-tag-glow: rgba(150, 166, 190, 0.24);
+  --ui-accent-bg: rgba(126, 145, 170, 0.14);
+  --ui-accent-border: rgba(196, 210, 231, 0.33);
+  --ui-accent-hover-border: rgba(244, 247, 252, 0.82);
+  --ui-accent-hover-text: #1a232e;
+  --ui-social-hover: rgba(167, 187, 214, 0.22);
+}
+
+:root[data-nebula-theme='obsidian'] {
+  --nebula-1: var(--nebula-obsidian-1);
+  --nebula-2: var(--nebula-obsidian-2);
+  --nebula-3: var(--nebula-obsidian-3);
+  --nebula-4: var(--nebula-obsidian-4);
+  --nebula-base-1: var(--nebula-obsidian-base-1);
+  --nebula-base-2: var(--nebula-obsidian-base-2);
+  --nebula-base-3: var(--nebula-obsidian-base-3);
+  --ui-border: rgba(104, 118, 142, 0.4);
+  --ui-border-soft: rgba(129, 146, 172, 0.24);
+  --ui-inner-border: rgba(236, 242, 251, 0.06);
+  --ui-glow: rgba(149, 166, 196, 0.24);
+  --ui-glow-strong: rgba(164, 180, 210, 0.34);
+  --ui-tag-glow: rgba(130, 146, 176, 0.22);
+  --ui-accent-bg: rgba(112, 128, 154, 0.13);
+  --ui-accent-border: rgba(186, 203, 228, 0.32);
+  --ui-accent-hover-border: rgba(242, 247, 255, 0.82);
+  --ui-accent-hover-text: #1a2331;
+  --ui-social-hover: rgba(154, 173, 205, 0.22);
+}
+
+:root[data-nebula-theme='void'] {
+  --nebula-1: var(--nebula-void-1);
+  --nebula-2: var(--nebula-void-2);
+  --nebula-3: var(--nebula-void-3);
+  --nebula-4: var(--nebula-void-4);
+  --nebula-base-1: var(--nebula-void-base-1);
+  --nebula-base-2: var(--nebula-void-base-2);
+  --nebula-base-3: var(--nebula-void-base-3);
+  --ui-border: rgba(88, 99, 150, 0.41);
+  --ui-border-soft: rgba(108, 123, 177, 0.24);
+  --ui-inner-border: rgba(235, 239, 255, 0.06);
+  --ui-glow: rgba(124, 141, 215, 0.3);
+  --ui-glow-strong: rgba(133, 151, 225, 0.42);
+  --ui-tag-glow: rgba(111, 127, 202, 0.26);
+  --ui-accent-bg: rgba(104, 122, 196, 0.14);
+  --ui-accent-border: rgba(191, 204, 245, 0.34);
+  --ui-accent-hover-border: rgba(240, 244, 255, 0.84);
+  --ui-accent-hover-text: #141c3a;
+  --ui-social-hover: rgba(145, 163, 235, 0.23);
+}
+
+:root[data-nebula-theme='coal'] {
+  --nebula-1: var(--nebula-coal-1);
+  --nebula-2: var(--nebula-coal-2);
+  --nebula-3: var(--nebula-coal-3);
+  --nebula-4: var(--nebula-coal-4);
+  --nebula-base-1: var(--nebula-coal-base-1);
+  --nebula-base-2: var(--nebula-coal-base-2);
+  --nebula-base-3: var(--nebula-coal-base-3);
+  --ui-border: rgba(128, 118, 110, 0.4);
+  --ui-border-soft: rgba(162, 148, 137, 0.24);
+  --ui-inner-border: rgba(247, 241, 236, 0.06);
+  --ui-glow: rgba(180, 156, 136, 0.24);
+  --ui-glow-strong: rgba(194, 169, 147, 0.34);
+  --ui-tag-glow: rgba(160, 139, 121, 0.22);
+  --ui-accent-bg: rgba(145, 128, 114, 0.13);
+  --ui-accent-border: rgba(214, 196, 183, 0.33);
+  --ui-accent-hover-border: rgba(250, 241, 234, 0.82);
+  --ui-accent-hover-text: #2c2018;
+  --ui-social-hover: rgba(186, 165, 149, 0.21);
+}
+
+:root[data-nebula-theme='abyss'] {
+  --nebula-1: var(--nebula-abyss-1);
+  --nebula-2: var(--nebula-abyss-2);
+  --nebula-3: var(--nebula-abyss-3);
+  --nebula-4: var(--nebula-abyss-4);
+  --nebula-base-1: var(--nebula-abyss-base-1);
+  --nebula-base-2: var(--nebula-abyss-base-2);
+  --nebula-base-3: var(--nebula-abyss-base-3);
+  --ui-border: rgba(59, 112, 124, 0.41);
+  --ui-border-soft: rgba(89, 144, 157, 0.24);
+  --ui-inner-border: rgba(232, 247, 250, 0.06);
+  --ui-glow: rgba(95, 176, 194, 0.29);
+  --ui-glow-strong: rgba(102, 187, 207, 0.42);
+  --ui-tag-glow: rgba(82, 157, 176, 0.24);
+  --ui-accent-bg: rgba(78, 149, 166, 0.14);
+  --ui-accent-border: rgba(183, 230, 239, 0.34);
+  --ui-accent-hover-border: rgba(238, 251, 255, 0.84);
+  --ui-accent-hover-text: #0f2f37;
+  --ui-social-hover: rgba(124, 203, 221, 0.22);
 }
 
 *,
@@ -118,7 +443,8 @@ a {
   background: radial-gradient(circle at 20% 30%, var(--nebula-1), transparent 32%),
     radial-gradient(circle at 70% 18%, var(--nebula-2), transparent 30%),
     radial-gradient(circle at 78% 70%, var(--nebula-3), transparent 30%),
-    linear-gradient(155deg, #010207 0%, #02040a 45%, #01030a 100%);
+    radial-gradient(circle at 48% 48%, var(--nebula-4), transparent 52%),
+    linear-gradient(155deg, var(--nebula-base-1) 0%, var(--nebula-base-2) 45%, var(--nebula-base-3) 100%);
   pointer-events: none;
 }
 
