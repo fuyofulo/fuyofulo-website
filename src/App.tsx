@@ -82,7 +82,6 @@ const featuredProjects: ExplorerProject[] = [
       'Yellowstone gRPC indexer that parses raw on-chain streams and decodes buy/sell trades against program IDL definitions.',
     code: 'https://github.com/fuyofulo/pumpswap-trades-indexer',
     article: '',
-    imageSrc: raftKvPreview,
     tags: [
       { label: 'Rust', imageSrc: rustcrab },
       { label: 'Solana', imageSrc: solanaLogo },
@@ -96,7 +95,6 @@ const featuredProjects: ExplorerProject[] = [
       'Vault contract with flash-loan swap execution and hash-based approval flow for limit and DCA order automation on Jupiter.',
     code: 'https://github.com/fuyofulo/fund_contract',
     article: '',
-    imageSrc: raftKvPreview,
     tags: [
       { label: 'Solana', imageSrc: solanaLogo },
       { label: 'Rust', imageSrc: rustcrab },
