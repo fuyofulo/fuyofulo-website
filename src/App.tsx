@@ -15,7 +15,8 @@ import githubLogo from './assets/github2-142-svgrepo-com.svg'
 import linkedinLogo from './assets/linkedin-svgrepo-com.svg'
 import xLogo from './assets/twitter-color-svgrepo-com.svg'
 import gmailLogo from './assets/gmail-svgrepo-com.svg'
-import raftKvPreview from './images/raft_kv.png'
+import raftKvPreview from './images/raft-kv-ss-2.png'
+import meteoraDlmmPreview from './images/meteora dlmm indexing explorer.png'
 import tksLogo from './images/tks_logo_2.jpg'
 import superteamLogo from './images/superteam_logo.jpg'
 import rektoffLogo from './images/rektoff_logo.png'
@@ -63,6 +64,20 @@ const skills: { name: string; imageSrc?: string; iconText?: string }[] = [
 
 const featuredProjects: ExplorerProject[] = [
   {
+    title: 'Meteora DLMM indexing explorer',
+    label: 'Solana Infra',
+    description:
+      'Solana DLMM data platform with Yellowstone gRPC ingestion, IDL-based parsing, ClickHouse medallion tables, and an API explorer dashboard.',
+    code: 'https://github.com/fuyofulo/dlmm_indexing_explorer',
+    article: '',
+    imageSrc: meteoraDlmmPreview,
+    tags: [
+      { label: 'Rust', imageSrc: rustcrab },
+      { label: 'Solana', imageSrc: solanaLogo },
+      { label: 'gRPC', imageSrc: grpcLogo },
+    ],
+  },
+  {
     title: 'raft_kv',
     label: 'Distributed Systems',
     description:
@@ -72,19 +87,6 @@ const featuredProjects: ExplorerProject[] = [
     imageSrc: raftKvPreview,
     tags: [
       { label: 'Rust', imageSrc: rustcrab },
-      { label: 'gRPC', imageSrc: grpcLogo },
-    ],
-  },
-  {
-    title: 'Pumpswap Indexer',
-    label: 'Solana Infra',
-    description:
-      'Yellowstone gRPC indexer that parses raw on-chain streams and decodes buy/sell trades against program IDL definitions.',
-    code: 'https://github.com/fuyofulo/pumpswap-trades-indexer',
-    article: '',
-    tags: [
-      { label: 'Rust', imageSrc: rustcrab },
-      { label: 'Solana', imageSrc: solanaLogo },
       { label: 'gRPC', imageSrc: grpcLogo },
     ],
   },
@@ -104,6 +106,17 @@ const featuredProjects: ExplorerProject[] = [
 ]
 
 const otherProjects: ExplorerProject[] = [
+  {
+    title: 'Pumpswap Indexer',
+    description:
+      'Yellowstone gRPC indexer that parses raw on-chain streams and decodes buy/sell trades against program IDL definitions.',
+    code: 'https://github.com/fuyofulo/pumpswap-trades-indexer',
+    tags: [
+      { label: 'Rust', imageSrc: rustcrab },
+      { label: 'Solana', imageSrc: solanaLogo },
+      { label: 'gRPC', imageSrc: grpcLogo },
+    ],
+  },
   {
     title: 'Wide Sandwich Attack Detection',
     description:

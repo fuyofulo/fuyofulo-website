@@ -814,10 +814,9 @@ h1 {
 .projects-explorer__image {
   width: 100%;
   height: auto;
-  max-height: 360px;
-  object-fit: contain;
+  max-height: none;
   display: block;
-  background: rgba(0, 0, 0, 0.28);
+  background: transparent;
 }
 
 .projects-explorer__meta {
@@ -1284,10 +1283,6 @@ h1 {
 
   .projects-explorer__media {
     padding: 0.95rem 0.95rem 0;
-  }
-
-  .projects-explorer__image {
-    max-height: 260px;
   }
 
   .credentials-grid {
