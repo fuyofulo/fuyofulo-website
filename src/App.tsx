@@ -64,11 +64,11 @@ const skills: { name: string; imageSrc?: string; iconText?: string }[] = [
 
 const featuredProjects: ExplorerProject[] = [
   {
-    title: 'Meteora DLMM indexing explorer',
+    title: 'Meteora DLMM Indexer',
     label: 'Solana Infra',
     description:
       'Solana DLMM data platform with Yellowstone gRPC ingestion, IDL-based parsing, ClickHouse medallion tables, and an API explorer dashboard.',
-    code: 'https://github.com/fuyofulo/dlmm_indexing_explorer',
+    code: 'https://github.com/fuyofulo/meteora_dlmm_indexer',
     article: '',
     imageSrc: meteoraDlmmPreview,
     tags: [
