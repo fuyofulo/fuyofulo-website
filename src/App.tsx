@@ -16,7 +16,7 @@ import linkedinLogo from './assets/linkedin-svgrepo-com.svg'
 import xLogo from './assets/twitter-color-svgrepo-com.svg'
 import gmailLogo from './assets/gmail-svgrepo-com.svg'
 import raftKvPreview from './images/raft-kv-ss-2.png'
-import meteoraDlmmPreview from './images/meteora dlmm indexing explorer.png'
+import meteoraDlmmPreview from './images/meteora dlmm indexer.png'
 import tksLogo from './images/tks_logo_2.jpg'
 import superteamLogo from './images/superteam_logo.jpg'
 import rektoffLogo from './images/rektoff_logo.png'
@@ -67,10 +67,11 @@ const featuredProjects: ExplorerProject[] = [
     title: 'Meteora DLMM Indexer',
     label: 'Solana Infra',
     description:
-      'Solana DLMM data platform with Yellowstone gRPC ingestion, IDL-based parsing, ClickHouse medallion tables, and an API explorer dashboard.',
+      'Real-time Meteora DLMM data platform with Yellowstone ingestion, IDL-driven decode and enrichment, ClickHouse storage, Redis flush signaling, and a Rust backend powering a live React dashboard.',
     code: 'https://github.com/fuyofulo/meteora_dlmm_indexer',
     article: '',
     imageSrc: meteoraDlmmPreview,
+    imageWidth: '84%',
     tags: [
       { label: 'Rust', imageSrc: rustcrab },
       { label: 'Solana', imageSrc: solanaLogo },

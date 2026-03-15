@@ -8,6 +8,7 @@ export type ExplorerProject = {
   code: string
   article?: string
   imageSrc?: string
+  imageWidth?: string
   label?: string
   tags?: Array<{ label: string; imageSrc: string }>
 }
@@ -69,6 +70,7 @@ function ProjectDetailPanel({
               src={project.imageSrc}
               alt={`${project.title} preview`}
               className="projects-explorer__image"
+              style={project.imageWidth ? { width: project.imageWidth } : undefined}
             />
           </div>
         ) : null}
