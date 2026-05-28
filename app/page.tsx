@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import { ClipboardButton } from "../components/clipboard-button";
 import { ProjectCarousel } from "../components/project-carousel";
@@ -441,6 +442,26 @@ export default function Home() {
                 >
                   go to medium
                 </a>
+              </div>
+            </Window>
+
+            <Window title="wall_of_hope.gif">
+              <div className="newsletter-box">
+                <div className="newsletter-box__header">
+                  <div className="logo-stamp logo-stamp--glyph" aria-hidden="true">
+                    ♡
+                  </div>
+                  <p className="newsletter-box__title">wall of hope</p>
+                </div>
+                <p className="newsletter-box__description">
+                  Pictures that give me hope. A quiet corner I come back to when things feel heavy.
+                </p>
+                <Link
+                  className="micro-button micro-button--lime"
+                  href="/wall-of-hope"
+                >
+                  visit the wall
+                </Link>
               </div>
             </Window>
           </div>

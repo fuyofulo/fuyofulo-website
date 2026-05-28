@@ -826,7 +826,99 @@ p {
   }
 }
 
+.top-strip__badge--link {
+  color: #81300c;
+  text-decoration: none;
+}
+
+.top-strip__badge--link:hover {
+  color: #81300c;
+  background: linear-gradient(180deg, #fff0a0, #ffd24a);
+}
+
+.wall-of-hope__window {
+  margin-top: 0;
+}
+
+.wall-of-hope__heading {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.wall-of-hope__intro {
+  max-width: 64ch;
+  color: #112344;
+  font-size: 0.96rem;
+}
+
+.wall-of-hope__empty {
+  display: grid;
+  gap: 6px;
+  padding: 28px 14px;
+  border: 2px dashed rgba(1, 83, 202, 0.28);
+  background: rgba(255, 255, 255, 0.55);
+  color: #41629d;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  text-align: center;
+}
+
+.wall-of-hope__empty code {
+  padding: 1px 5px;
+  background: rgba(1, 83, 202, 0.1);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+}
+
+.wall-of-hope__empty-hint {
+  font-size: 0.76rem;
+  opacity: 0.85;
+}
+
+.wall-of-hope__grid {
+  column-count: 3;
+  column-gap: 12px;
+}
+
+.wall-of-hope__item {
+  break-inside: avoid;
+  margin: 0 0 12px;
+  padding: 6px 6px 8px;
+  border: 2px solid var(--line-dark);
+  border-top-color: var(--bevel-light);
+  border-left-color: var(--bevel-light);
+  background: #ffffff;
+  box-shadow: 4px 4px 0 var(--shadow);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.wall-of-hope__item:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--shadow);
+}
+
+.wall-of-hope__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.logo-stamp--glyph {
+  background: linear-gradient(180deg, #ffd0e2, #ff7aae);
+  color: #ffffff;
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.08);
+}
+
 @media (max-width: 1100px) {
+  .wall-of-hope__grid {
+    column-count: 2;
+  }
+
   .content-grid,
   .featured-grid {
     grid-template-columns: 1fr;
@@ -861,6 +953,15 @@ p {
 }
 
 @media (max-width: 720px) {
+  .wall-of-hope__grid {
+    column-count: 2;
+    column-gap: 8px;
+  }
+
+  .wall-of-hope__item {
+    margin-bottom: 8px;
+  }
+
   .page {
     width: min(100% - 12px, 100%);
     margin-top: 8px;
