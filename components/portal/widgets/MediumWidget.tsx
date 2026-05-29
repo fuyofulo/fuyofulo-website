@@ -13,7 +13,7 @@ export function MediumWidget() {
         kind: "link",
         label: "go to medium →",
         href: medium.href,
-        variant: "lime",
+        variant: "black",
         external: true,
       }}
     />

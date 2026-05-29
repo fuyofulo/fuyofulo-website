@@ -14,7 +14,7 @@ export function NewsletterWidget() {
         kind: "link",
         label: "subscribe →",
         href: newsletter.href,
-        variant: "lime",
+        variant: "orange",
         external: true,
       }}
     />

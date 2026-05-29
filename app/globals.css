@@ -159,6 +159,43 @@ h4 {
   color: #67072e;
 }
 
+.micro-button--blue {
+  border-right-color: #00308a;
+  border-bottom-color: #00308a;
+  background: linear-gradient(180deg, #4ea0ee 0%, #0153ca 100%);
+  color: #ffffff;
+}
+
+.micro-button--blue:hover {
+  color: #ffffff;
+}
+
+.micro-button--orange {
+  border-right-color: #8a2900;
+  border-bottom-color: #8a2900;
+  background: linear-gradient(180deg, #ffa066 0%, #d2480a 100%);
+  color: #ffffff;
+}
+
+.micro-button--orange:hover {
+  color: #ffffff;
+}
+
+.micro-button--black {
+  border-right-color: #000000;
+  border-bottom-color: #000000;
+  background: linear-gradient(180deg, #4a4a4a 0%, #050505 100%);
+  color: #ffffff;
+}
+
+.micro-button--black:hover {
+  color: #ffffff;
+}
+
+.micro-button--pink:hover {
+  color: #67072e;
+}
+
 .micro-button__icon {
   width: 12px;
   height: 12px;
