@@ -61,6 +61,14 @@ export const books: Book[] = [
     cover: "/books/art_of_war.png",
     notes: [],
   },
+  {
+    id: "zero-to-one",
+    title: "Zero to One",
+    subtitle: "Notes on Startups, or How to Build the Future",
+    author: "Peter Thiel & Blake Masters",
+    cover: "/books/zero_to_one.png",
+    notes: [],
+  },
 ];
 
 export function findBookById(id: string): Book | undefined {
