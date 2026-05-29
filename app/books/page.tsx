@@ -20,8 +20,7 @@ export default function BooksPage() {
         <div className="section-heading books-heading">
           <h2>The Library</h2>
           <p className="books-intro">
-            Books I&apos;ve read. Some have notes — click a cover to see what
-            stuck.
+            Books I have read and some thoughts on them.
           </p>
         </div>
 
