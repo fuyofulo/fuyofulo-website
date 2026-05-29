@@ -9,7 +9,12 @@ export type CTAVariant = "lime" | "pink" | "dark";
 export type TitleVariant = "default" | "count";
 
 export type WidgetIcon =
-  | { kind: "image"; src: StaticImageData; alt: string }
+  | {
+      kind: "image";
+      src: StaticImageData;
+      alt: string;
+      style?: "logo" | "emoji";
+    }
   | { kind: "glyph"; glyph: string; tone?: "default" | "pink" | "green" };
 
 export type WidgetCTA =
@@ -49,9 +54,11 @@ function ctaClassName(variant: CTAVariant = "lime"): string {
 
 function StampIcon({ icon }: { icon: WidgetIcon }) {
   if (icon.kind === "image") {
+    const styleClass =
+      icon.style === "emoji" ? "logo-stamp--emoji" : "logo-stamp--sm";
     return (
-      <div className="logo-stamp logo-stamp--sm">
-        <Image src={icon.src} alt={icon.alt} width={32} height={32} />
+      <div className={`logo-stamp ${styleClass}`}>
+        <Image src={icon.src} alt={icon.alt} width={36} height={36} />
       </div>
     );
   }
