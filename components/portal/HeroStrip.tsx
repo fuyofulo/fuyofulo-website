@@ -41,7 +41,7 @@ export function HeroStrip() {
       </div>
       <div className="hero-strip__smiley">
         <WhiteFireSmiley />
-        <div className="kicker hero-strip__smiley-caption">fuyosmile.gif</div>
+        <div className="kicker hero-strip__smiley-caption">fuyo smile</div>
       </div>
     </div>
   );
