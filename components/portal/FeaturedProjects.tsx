@@ -44,10 +44,7 @@ function FeaturedCard({ project }: { project: FeaturedProject }) {
 
 export function FeaturedProjects() {
   return (
-    <SectionCard
-      title="★ featured projects"
-      meta={`${featuredProjects.length} items`}
-    >
+    <SectionCard title="★ featured projects">
       <div className="feat-row">
         {featuredProjects.map((project) => (
           <FeaturedCard key={project.title} project={project} />

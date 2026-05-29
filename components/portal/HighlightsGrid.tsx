@@ -31,10 +31,7 @@ function HighlightRow({ item }: { item: Highlight }) {
 
 export function HighlightsGrid() {
   return (
-    <SectionCard
-      title="★ programs & fellowships"
-      meta={`${highlights.length} chapters`}
-    >
+    <SectionCard title="★ programs & fellowships">
       <div className="high-grid">
         {highlights.map((item) => (
           <HighlightRow key={item.title} item={item} />
