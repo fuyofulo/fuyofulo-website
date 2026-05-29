@@ -17,7 +17,7 @@ export function LibraryWidget() {
         kind: "link",
         label: "browse the library →",
         href: "/books",
-        variant: "lime",
+        variant: "pink",
       }}
     />
   );
