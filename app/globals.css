@@ -192,6 +192,17 @@ h4 {
   color: #ffffff;
 }
 
+.micro-button--green {
+  border-right-color: #1a4a26;
+  border-bottom-color: #1a4a26;
+  background: linear-gradient(180deg, #9be3a4 0%, #2f6b3f 100%);
+  color: #ffffff;
+}
+
+.micro-button--green:hover {
+  color: #ffffff;
+}
+
 .micro-button--pink:hover {
   color: #67072e;
 }
@@ -411,6 +422,75 @@ h4 {
 }
 
 .wall-of-hope__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   /cats page
+   ============================================================ */
+.cats__window { margin-top: 0; }
+
+.cats__heading {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.cats__intro {
+  max-width: 64ch;
+  color: #112344;
+  font-size: 0.96rem;
+}
+
+.cats__empty {
+  display: grid;
+  gap: 6px;
+  padding: 28px 14px;
+  border: 2px dashed rgba(1, 83, 202, 0.28);
+  background: rgba(255, 255, 255, 0.55);
+  color: #41629d;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  text-align: center;
+}
+
+.cats__empty code {
+  padding: 1px 5px;
+  background: rgba(1, 83, 202, 0.1);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+}
+
+.cats__empty-hint {
+  font-size: 0.76rem;
+  opacity: 0.85;
+}
+
+.cats__grid {
+  column-count: 4;
+  column-gap: 12px;
+}
+
+.cats__item {
+  break-inside: avoid;
+  margin: 0 0 12px;
+  padding: 6px 6px 8px;
+  border: 2px solid var(--line-dark);
+  border-top-color: var(--bevel-light);
+  border-left-color: var(--bevel-light);
+  background: #ffffff;
+  box-shadow: 4px 4px 0 var(--shadow);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.cats__item:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--shadow);
+}
+
+.cats__item img {
   width: 100%;
   height: auto;
   display: block;
@@ -1756,6 +1836,10 @@ h4 {
   .wall-of-hope__grid {
     column-count: 3;
   }
+
+  .cats__grid {
+    column-count: 3;
+  }
 }
 
 @media (max-width: 720px) {
@@ -1781,6 +1865,15 @@ h4 {
   }
 
   .wall-of-hope__item {
+    margin-bottom: 8px;
+  }
+
+  .cats__grid {
+    column-count: 2;
+    column-gap: 8px;
+  }
+
+  .cats__item {
     margin-bottom: 8px;
   }
 }

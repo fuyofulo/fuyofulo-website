@@ -11,7 +11,7 @@ export type HeadVariant =
   | "yellow"
   | "orange"
   | "black";
-export type CTAVariant = "lime" | "pink" | "blue" | "orange" | "black";
+export type CTAVariant = "lime" | "pink" | "blue" | "orange" | "black" | "green";
 export type TitleVariant = "default" | "count";
 
 export type WidgetIcon =
@@ -56,6 +56,7 @@ function ctaClassName(variant: CTAVariant = "lime"): string {
     blue: "micro-button micro-button--blue widget__cta",
     orange: "micro-button micro-button--orange widget__cta",
     black: "micro-button micro-button--black widget__cta",
+    green: "micro-button micro-button--green widget__cta",
   };
   return map[variant];
 }
