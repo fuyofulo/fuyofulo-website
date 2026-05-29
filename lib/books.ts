@@ -77,6 +77,13 @@ export const books: Book[] = [
     cover: "/books/how_to_win_friends.png",
     notes: [],
   },
+  {
+    id: "agar-ab-bhi-na-jage-to",
+    title: "Agar Ab Bhi Na Jage To",
+    author: "Shams Naved Usmani",
+    cover: "/books/agar_abhi_na_jaage_toh.png",
+    notes: [],
+  },
 ];
 
 export function findBookById(id: string): Book | undefined {
