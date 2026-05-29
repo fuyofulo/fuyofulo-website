@@ -1392,8 +1392,8 @@ h4 {
   height: 22px;
   border-radius: 50%;
   background: #0d1117;
-  border: 1px solid #30363d;
-  box-shadow: 1.5px 1.5px 0 var(--shadow);
+  border: 0;
+  box-shadow: 1px 1px 0 rgba(0, 22, 78, 0.16);
   transition: transform 120ms ease, box-shadow 120ms ease;
 }
 
@@ -1405,7 +1405,7 @@ h4 {
 
 .feat-card__github:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 2.5px 2.5px 0 var(--shadow);
+  box-shadow: 2px 2px 0 rgba(0, 22, 78, 0.18);
 }
 
 /* highlights — 2-col compact grid */
@@ -1517,8 +1517,8 @@ h4 {
   height: 20px;
   border-radius: 50%;
   background: #0d1117;
-  border: 1px solid #30363d;
-  box-shadow: 1.5px 1.5px 0 var(--shadow);
+  border: 0;
+  box-shadow: 1px 1px 0 rgba(0, 22, 78, 0.16);
   transition: transform 120ms ease, box-shadow 120ms ease;
 }
 
@@ -1530,7 +1530,7 @@ h4 {
 
 .archive-card__code:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 2.5px 2.5px 0 var(--shadow);
+  box-shadow: 2px 2px 0 rgba(0, 22, 78, 0.18);
 }
 
 .archive-card__desc {
