@@ -103,12 +103,6 @@ export function VibeGate({ defaultDismissed = false }: VibeGateProps) {
               <div className="vibe-gate__loader-stripes" />
             </div>
           </div>
-          <div className="vibe-gate__ticker" aria-hidden="true">
-            <span>
-              now buffering · please wait · grab a coffee · the vibes are
-              loading · stay with me ·{" "}
-            </span>
-          </div>
 
           <button
             type="button"
