@@ -69,6 +69,14 @@ export const books: Book[] = [
     cover: "/books/zero_to_one.png",
     notes: [],
   },
+  {
+    id: "how-to-win-friends",
+    title: "How to Win Friends and Influence People",
+    subtitle: "The Only Book You Need to Lead You to Success",
+    author: "Dale Carnegie",
+    cover: "/books/how_to_win_friends.png",
+    notes: [],
+  },
 ];
 
 export function findBookById(id: string): Book | undefined {
