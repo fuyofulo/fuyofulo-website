@@ -1574,6 +1574,16 @@ h4 {
   background: linear-gradient(180deg, #6fc97a, #2f6b3f);
 }
 
+.widget--orange .widget__head {
+  background: linear-gradient(180deg, #ff8a3d, #d2480a);
+  color: #ffffff;
+}
+
+.widget--black .widget__head {
+  background: linear-gradient(180deg, #3a3a3a, #050505);
+  color: #ffffff;
+}
+
 .widget__row {
   display: grid;
   grid-template-columns: 32px minmax(0, 1fr);

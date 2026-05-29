@@ -6,6 +6,7 @@ export function WallOfHopeWidget() {
   return (
     <Widget
       headTitle="♡ wall of hope"
+      headVariant="hot"
       icon={{
         kind: "image",
         src: sparklingHeartIcon,

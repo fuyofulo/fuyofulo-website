@@ -4,7 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import type { StaticImageData } from "next/image";
 
-export type HeadVariant = "default" | "hot" | "green" | "yellow";
+export type HeadVariant =
+  | "default"
+  | "hot"
+  | "green"
+  | "yellow"
+  | "orange"
+  | "black";
 export type CTAVariant = "lime" | "pink" | "dark";
 export type TitleVariant = "default" | "count";
 
@@ -106,6 +112,8 @@ const headVariantClass: Record<HeadVariant, string> = {
   hot: "widget--hot",
   green: "widget--green",
   yellow: "widget--yellow",
+  orange: "widget--orange",
+  black: "widget--black",
 };
 
 export function Widget({

@@ -5,6 +5,7 @@ export function MediumWidget() {
   return (
     <Widget
       headTitle="✎ medium"
+      headVariant="black"
       icon={{ kind: "image", src: medium.logo, alt: "Medium logo" }}
       title={medium.title}
       description={medium.blurb}

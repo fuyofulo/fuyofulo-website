@@ -6,7 +6,7 @@ export function NewsletterWidget() {
     <Widget
       headTitle="✦ public diary"
       headBadge="NEW"
-      headVariant="hot"
+      headVariant="orange"
       icon={{ kind: "image", src: newsletter.logo, alt: "Substack logo" }}
       title={newsletter.title}
       description={newsletter.blurb}
