@@ -29,6 +29,14 @@ export const books: Book[] = [
     cover: "/books/the_little_book_of_data.png",
     notes: [],
   },
+  {
+    id: "school-of-life",
+    title: "The School of Life",
+    subtitle: "An Emotional Education",
+    author: "Alain de Botton",
+    cover: "/books/school_of_life.png",
+    notes: [],
+  },
 ];
 
 export function findBookById(id: string): Book | undefined {
