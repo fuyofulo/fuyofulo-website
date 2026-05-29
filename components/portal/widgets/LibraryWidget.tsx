@@ -1,4 +1,4 @@
-import booksIcon from "../../../images/books_3d.png";
+import closedBookIcon from "../../../images/closed_book_3d.png";
 import { books } from "../../../lib/books";
 import { Widget } from "./Widget";
 
@@ -12,7 +12,12 @@ export function LibraryWidget() {
   return (
     <Widget
       headTitle="✎ the library"
-      icon={{ kind: "image", src: booksIcon, alt: "books", style: "emoji" }}
+      icon={{
+        kind: "image",
+        src: closedBookIcon,
+        alt: "book",
+        style: "emoji",
+      }}
       title="books I've read"
       description={blurb}
       cta={{
