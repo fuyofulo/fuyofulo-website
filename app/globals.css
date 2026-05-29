@@ -1387,18 +1387,25 @@ h4 {
 .feat-card__github {
   display: inline-flex;
   align-items: center;
-  transition: transform 120ms ease, opacity 120ms ease;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #0d1117;
+  border: 1.5px solid #30363d;
+  box-shadow: 2px 2px 0 var(--shadow);
+  transition: transform 120ms ease, box-shadow 120ms ease;
 }
 
 .feat-card__github img {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   display: block;
 }
 
 .feat-card__github:hover {
-  transform: translateY(-1px);
-  opacity: 0.78;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--shadow);
 }
 
 /* highlights — 2-col compact grid */
@@ -1505,18 +1512,25 @@ h4 {
 .archive-card__code {
   display: inline-flex;
   align-items: center;
-  transition: transform 120ms ease, opacity 120ms ease;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #0d1117;
+  border: 1.5px solid #30363d;
+  box-shadow: 2px 2px 0 var(--shadow);
+  transition: transform 120ms ease, box-shadow 120ms ease;
 }
 
 .archive-card__code img {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   display: block;
 }
 
 .archive-card__code:hover {
-  transform: translateY(-1px);
-  opacity: 0.78;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--shadow);
 }
 
 .archive-card__desc {
