@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
@@ -47,62 +46,44 @@ export default function WallOfHopePage() {
   const images = getWallImages();
 
   return (
-    <main className="site-shell">
-      <div className="wallpaper" />
-      <div className="page">
-        <div className="top-strip">
-          <Link href="/" className="top-strip__badge top-strip__badge--link">
-            ← homepage
-          </Link>
-          <div className="marquee" aria-label="site ticker">
-            <span>
-              // keep going // pictures that hold me up // you&apos;re doing
-              better than you think //
-            </span>
-          </div>
-          <div className="top-strip__badge blink">stay soft</div>
+    <section className="window section-window wall-of-hope__window">
+      <div className="window-title">
+        <span>wall_of_hope.gif</span>
+        <div className="window-actions" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+      </div>
+      <div className="window-body">
+        <div className="section-heading wall-of-hope__heading">
+          <p className="eyebrow">/wall-of-hope</p>
+          <h2>wall of hope</h2>
+          <p className="wall-of-hope__intro">
+            Pictures that give me hope. A quiet corner I come back to when
+            things feel heavy.
+          </p>
         </div>
 
-        <section className="window section-window wall-of-hope__window">
-          <div className="window-title">
-            <span>wall_of_hope.gif</span>
-            <div className="window-actions" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </div>
+        {images.length === 0 ? (
+          <div className="wall-of-hope__empty">
+            <p>The wall is empty — for now.</p>
+            <p className="wall-of-hope__empty-hint">
+              Drop images into <code>public/wall-of-hope/</code> and they
+              show up here on the next build.
+            </p>
           </div>
-          <div className="window-body">
-            <div className="section-heading wall-of-hope__heading">
-              <p className="eyebrow">/wall-of-hope</p>
-              <h2>wall of hope</h2>
-              <p className="wall-of-hope__intro">
-                Pictures that give me hope. A quiet corner I come back to when
-                things feel heavy.
-              </p>
-            </div>
-
-            {images.length === 0 ? (
-              <div className="wall-of-hope__empty">
-                <p>The wall is empty — for now.</p>
-                <p className="wall-of-hope__empty-hint">
-                  Drop images into <code>public/wall-of-hope/</code> and they
-                  show up here on the next build.
-                </p>
-              </div>
-            ) : (
-              <div className="wall-of-hope__grid">
-                {images.map((image) => (
-                  <figure key={image.src} className="wall-of-hope__item">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={image.src} alt={image.alt} loading="lazy" />
-                  </figure>
-                ))}
-              </div>
-            )}
+        ) : (
+          <div className="wall-of-hope__grid">
+            {images.map((image) => (
+              <figure key={image.src} className="wall-of-hope__item">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={image.src} alt={image.alt} loading="lazy" />
+              </figure>
+            ))}
           </div>
-        </section>
+        )}
       </div>
-    </main>
+    </section>
   );
 }
