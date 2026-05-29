@@ -8,7 +8,6 @@ coverage/
 .DS_Store
 tsconfig.tsbuildinfo
 
-data/visitor-count.json
 fuyofulo-website.zip
 
 .env

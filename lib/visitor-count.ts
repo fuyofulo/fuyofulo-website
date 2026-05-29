@@ -1,36 +1,34 @@
-import { promises as fs } from "node:fs";
-import { join } from "node:path";
+import { Redis } from "@upstash/redis";
 
-const DATA_DIR = join(process.cwd(), "data");
-const FILE = join(DATA_DIR, "visitor-count.json");
-const SEED = 0;
+const KEY = "visitor:count";
 
-type CounterShape = { count: number };
-
-async function read(): Promise<number> {
-  try {
-    const raw = await fs.readFile(FILE, "utf8");
-    const parsed = JSON.parse(raw) as Partial<CounterShape>;
-    return typeof parsed.count === "number" && Number.isFinite(parsed.count)
-      ? parsed.count
-      : SEED;
-  } catch {
-    return SEED;
-  }
-}
-
-async function write(count: number): Promise<void> {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  await fs.writeFile(FILE, JSON.stringify({ count } satisfies CounterShape), "utf8");
+// Vercel Marketplace injects KV_REST_API_URL + KV_REST_API_TOKEN.
+// Falls back gracefully if env is missing so local dev without the
+// vars doesn't crash — count just reads as 0.
+function getClient(): Redis | null {
+  const url = process.env.KV_REST_API_URL;
+  const token = process.env.KV_REST_API_TOKEN;
+  if (!url || !token) return null;
+  return new Redis({ url, token });
 }
 
 export async function readVisitorCount(): Promise<number> {
-  return read();
+  const redis = getClient();
+  if (!redis) return 0;
+  try {
+    const value = await redis.get<number>(KEY);
+    return typeof value === "number" && Number.isFinite(value) ? value : 0;
+  } catch {
+    return 0;
+  }
 }
 
 export async function incrementVisitorCount(): Promise<number> {
-  const current = await read();
-  const next = current + 1;
-  await write(next);
-  return next;
+  const redis = getClient();
+  if (!redis) return 0;
+  try {
+    return await redis.incr(KEY);
+  } catch {
+    return 0;
+  }
 }
