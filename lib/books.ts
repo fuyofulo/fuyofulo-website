@@ -54,6 +54,13 @@ export const books: Book[] = [
     cover: "/books/digital_cash.png",
     notes: [],
   },
+  {
+    id: "art-of-war",
+    title: "The Art of War",
+    author: "Sun Tzu",
+    cover: "/books/art_of_war.png",
+    notes: [],
+  },
 ];
 
 export function findBookById(id: string): Book | undefined {
