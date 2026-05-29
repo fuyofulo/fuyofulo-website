@@ -57,11 +57,9 @@ export default function WallOfHopePage() {
       </div>
       <div className="window-body">
         <div className="section-heading wall-of-hope__heading">
-          <p className="eyebrow">/wall-of-hope</p>
-          <h2>wall of hope</h2>
+          <h2>Wall of Hope</h2>
           <p className="wall-of-hope__intro">
-            Pictures that give me hope. A quiet corner I come back to when
-            things feel heavy.
+            Pictures that give me hope.
           </p>
         </div>
 
