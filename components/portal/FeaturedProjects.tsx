@@ -24,8 +24,19 @@ function FeaturedCard({ project }: { project: FeaturedProject }) {
         <TagList tags={project.tags} />
       </div>
       <div className="feat-card__links">
-        <a href={project.code} target="_blank" rel="noreferrer">
-          code →
+        <a
+          href={project.code}
+          target="_blank"
+          rel="noreferrer"
+          className="feat-card__github"
+          aria-label={`${project.title} on GitHub`}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/assets/github2-142-svgrepo-com.svg"
+            alt=""
+            aria-hidden="true"
+          />
         </a>
         {project.live ? (
           <a href={project.live} target="_blank" rel="noreferrer">

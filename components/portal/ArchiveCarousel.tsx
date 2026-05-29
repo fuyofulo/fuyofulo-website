@@ -16,8 +16,14 @@ function ArchiveCard({ item }: { item: ArchiveProject }) {
           href={item.code}
           target="_blank"
           rel="noreferrer"
+          aria-label={`${item.title} on GitHub`}
         >
-          code →
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/assets/github2-142-svgrepo-com.svg"
+            alt=""
+            aria-hidden="true"
+          />
         </a>
       </div>
       <p className="archive-card__desc">{item.description}</p>

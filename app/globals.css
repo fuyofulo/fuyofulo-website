@@ -1376,11 +1376,29 @@ h4 {
 
 .feat-card__links {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 12px;
   font-family: var(--mono);
   font-size: 0.66rem;
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.feat-card__github {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.feat-card__github img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.feat-card__github:hover {
+  transform: translateY(-1px);
+  opacity: 0.78;
 }
 
 /* highlights — 2-col compact grid */
@@ -1485,12 +1503,20 @@ h4 {
 }
 
 .archive-card__code {
-  font-family: var(--mono);
-  font-size: 0.66rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--link);
-  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.archive-card__code img {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.archive-card__code:hover {
+  transform: translateY(-1px);
+  opacity: 0.78;
 }
 
 .archive-card__desc {
