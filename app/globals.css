@@ -440,12 +440,6 @@ h4 {
   height: 100%;
   object-fit: cover;
   display: block;
-  opacity: 0;
-  transition: opacity 220ms ease;
-}
-
-.book-cover__img--loaded {
-  opacity: 1;
 }
 
 .book-cover__fallback {
