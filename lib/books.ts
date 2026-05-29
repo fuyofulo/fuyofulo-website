@@ -37,6 +37,14 @@ export const books: Book[] = [
     cover: "/books/school_of_life.png",
     notes: [],
   },
+  {
+    id: "never-split-the-difference",
+    title: "Never Split the Difference",
+    subtitle: "Negotiating As If Your Life Depended On It",
+    author: "Chris Voss with Tahl Raz",
+    cover: "/books/never_split.png",
+    notes: [],
+  },
 ];
 
 export function findBookById(id: string): Book | undefined {
