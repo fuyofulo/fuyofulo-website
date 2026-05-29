@@ -246,8 +246,7 @@ export const medium: WritingChannel = {
 
 export const wall = {
   title: "wall of hope",
-  blurb:
-    "A quiet corner of pictures I return to when things feel heavy.",
+  blurb: "Pictures that give me hope.",
   href: "/wall-of-hope",
 } as const;
 

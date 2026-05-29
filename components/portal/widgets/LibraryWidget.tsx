@@ -1,14 +1,7 @@
 import closedBookIcon from "../../../images/closed_book_3d.png";
-import { books } from "../../../lib/books";
 import { Widget } from "./Widget";
 
 export function LibraryWidget() {
-  const count = books.length;
-  const blurb =
-    count > 0
-      ? `${count} books on the shelf. notes on the ones that stuck.`
-      : "a shelf in progress.";
-
   return (
     <Widget
       headTitle="✎ the library"
@@ -19,7 +12,7 @@ export function LibraryWidget() {
         style: "emoji",
       }}
       title="books I've read"
-      description={blurb}
+      description="Books I have read and some thoughts on them."
       cta={{
         kind: "link",
         label: "browse the library →",
