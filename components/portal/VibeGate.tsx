@@ -65,10 +65,25 @@ export function VibeGate({ defaultDismissed = false }: VibeGateProps) {
     // session cookie — no Max-Age/Expires means it deletes when the browser
     // session ends. SameSite=Lax avoids cross-site noise.
     document.cookie = "fv=1; path=/; SameSite=Lax";
-    // fire-and-forget counter increment
-    fetch("/api/visit", { method: "POST" }).catch(() => {
-      /* swallow — display isn't gated on this */
-    });
+    // increment + push the new count to the brand-bar badge so it bumps live
+    fetch("/api/visit", { method: "POST" })
+      .then((res) => res.json())
+      .then((data: unknown) => {
+        if (
+          data &&
+          typeof data === "object" &&
+          "count" in data &&
+          typeof data.count === "number" &&
+          Number.isFinite(data.count)
+        ) {
+          window.dispatchEvent(
+            new CustomEvent("fuyo:visitor-count", { detail: data.count }),
+          );
+        }
+      })
+      .catch(() => {
+        /* swallow — display isn't gated on this */
+      });
     play();
     setDismissed(true);
   }

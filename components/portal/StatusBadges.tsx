@@ -1,10 +1,12 @@
+import type { ReactNode } from "react";
 import { statusBadges as defaultBadges, type StatusBadge } from "../../lib/site-data";
 
 type StatusBadgesProps = {
   badges?: StatusBadge[];
+  trailing?: ReactNode;
 };
 
-export function StatusBadges({ badges = defaultBadges }: StatusBadgesProps) {
+export function StatusBadges({ badges = defaultBadges, trailing }: StatusBadgesProps) {
   return (
     <div className="status-badges" aria-label="status">
       {badges.map((badge) => {
@@ -24,6 +26,7 @@ export function StatusBadges({ badges = defaultBadges }: StatusBadgesProps) {
           </span>
         );
       })}
+      {trailing}
     </div>
   );
 }
