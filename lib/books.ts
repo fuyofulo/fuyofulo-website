@@ -45,6 +45,15 @@ export const books: Book[] = [
     cover: "/books/never_split.png",
     notes: [],
   },
+  {
+    id: "digital-cash",
+    title: "Digital Cash",
+    subtitle:
+      "The Unknown History of the Anarchists, Utopians, and Technologists Who Created Cryptocurrency",
+    author: "Finn Brunton",
+    cover: "/books/digital_cash.png",
+    notes: [],
+  },
 ];
 
 export function findBookById(id: string): Book | undefined {
