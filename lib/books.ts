@@ -20,6 +20,15 @@ export const books: Book[] = [
     cover: "/books/ascent_of_money.png",
     notes: [],
   },
+  {
+    id: "little-book-of-data",
+    title: "The Little Book of Data",
+    subtitle:
+      "Understanding the Powerful Analytics that Fuel AI, Make or Break Careers, and Could Just End Up Saving the World",
+    author: "Justin Evans",
+    cover: "/books/the_little_book_of_data.png",
+    notes: [],
+  },
 ];
 
 export function findBookById(id: string): Book | undefined {
