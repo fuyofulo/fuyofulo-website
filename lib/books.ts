@@ -84,6 +84,14 @@ export const books: Book[] = [
     cover: "/books/agar_abhi_na_jaage_toh.png",
     notes: [],
   },
+  {
+    id: "why-zebras-dont-get-ulcers",
+    title: "Why Zebras Don't Get Ulcers",
+    subtitle: "The Acclaimed Guide to Stress, Stress-Related Diseases, and Coping",
+    author: "Robert Sapolsky",
+    cover: "/books/zebras_ulcers.png",
+    notes: [],
+  },
 ];
 
 export function findBookById(id: string): Book | undefined {
