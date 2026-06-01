@@ -10,7 +10,7 @@ import {
   type ReactNode,
 } from "react";
 
-const VIDEO_ID = "LUtXeWMM4mI";
+const VIDEO_ID = "iAMo8JhDjGM";
 const API_SRC = "https://www.youtube.com/iframe_api";
 
 type YTPlayer = {
