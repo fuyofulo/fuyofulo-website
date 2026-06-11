@@ -1,6 +1,6 @@
 import type { StaticImageData } from "next/image";
 import devsLogo from "../images/100xdevs_logo.jpg";
-import axoriaPreview from "../images/axoria.png";
+import decimalPreview from "../images/decimal-preview.png";
 import meteoraPreview from "../images/tui.png";
 import mediumLogo from "../images/medium-logo.jpg";
 import substackLogo from "../images/substack.png";
@@ -52,7 +52,7 @@ export type WritingChannel = {
 export const hero = {
   eyebrow: "yo! I am",
   name: "fuyofulo",
-  bio: "I'm a software engineer currently focused on indexing the Solana blockchain. My work spans Solana programs, distributed systems, and full-stack applications.",
+  bio: "I'm a software engineer. I've built projects across distributed systems, real-time indexers, trading systems, and Solana programs. Currently exploring fintech and accounts payable with Decimal.",
 } as const;
 
 export const socials: Social[] = [
@@ -115,14 +115,14 @@ export const highlights: Highlight[] = [
 
 export const featuredProjects: FeaturedProject[] = [
   {
-    label: "Stablecoin Infra",
-    title: "Axoria",
+    label: "AI Accounts Payable",
+    title: "Decimal",
     description:
-      "Payouts and collections infrastructure for stablecoin teams, built around deterministic workflows, on-chain reconciliation, and proof-backed USDC movement on Solana.",
-    tags: ["Node.js", "TypeScript", "Prisma", "React", "Rust"],
-    code: "https://github.com/fuyofulo/stablecoin_infra",
-    live: "https://axoria.fun",
-    preview: axoriaPreview,
+      "AI-powered accounts payable on Solana. AI reads vendor invoices into payment orders and pays them in USDC from the team's Squads v4 multisig: within policy through spending limits, outside it through proposals. Payment rules are enforced on-chain, not in the backend.",
+    tags: ["TypeScript", "React", "Solana", "Prisma"],
+    code: "https://github.com/decimalfinance/decimal",
+    live: "https://decimal.finance",
+    preview: decimalPreview,
   },
   {
     label: "Solana Infra",
@@ -197,7 +197,8 @@ export const archiveProjects: ArchiveProject[] = [
   },
   {
     title: "CFD Platform",
-    description: "Exness clone focused on market and account workflow replication.",
+    description:
+      "Real-time CFD trading exchange with leverage, automated liquidation, and stop-loss / take-profit, built around Redis Streams.",
     tags: ["TypeScript", "Node.js", "React", "Prisma"],
     code: "https://github.com/fuyofulo/exness",
   },
