@@ -1,4 +1,5 @@
 import { hero, socials } from "../../lib/site-data";
+import { CopyEmailButton } from "./CopyEmailButton";
 import { WhiteFireSmiley } from "../white-fire-smiley";
 
 export function HeroStrip() {
@@ -10,6 +11,16 @@ export function HeroStrip() {
         <p className="bio">{hero.bio}</p>
         <div className="hero-strip__actions">
           {socials.map((social) => {
+            if (social.copyValue) {
+              return (
+                <CopyEmailButton
+                  key={social.label}
+                  value={social.copyValue}
+                  label={social.label}
+                  icon={social.icon}
+                />
+              );
+            }
             const isExternal = social.href.startsWith("http");
             return (
               <a

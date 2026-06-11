@@ -1,6 +1,6 @@
 import type { StaticImageData } from "next/image";
 import devsLogo from "../images/100xdevs_logo.jpg";
-import decimalPreview from "../images/decimal-preview.png";
+import decimalPreview from "../images/decimal_landing_ss.png";
 import meteoraPreview from "../images/tui.png";
 import mediumLogo from "../images/medium-logo.jpg";
 import substackLogo from "../images/substack.png";
@@ -14,6 +14,7 @@ export type Social = {
   href: string;
   icon?: string;
   glyph?: string;
+  copyValue?: string;
 };
 
 export type Highlight = {
@@ -73,7 +74,8 @@ export const socials: Social[] = [
   },
   {
     label: "email",
-    href: "mailto:fuyofulo@gmail.com",
+    href: "mailto:pheonixdiaz625@gmail.com",
+    copyValue: "pheonixdiaz625@gmail.com",
     icon: "/assets/gmail-svgrepo-com.svg",
   },
 ];
