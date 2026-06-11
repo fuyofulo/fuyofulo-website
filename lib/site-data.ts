@@ -101,7 +101,7 @@ export const highlights: Highlight[] = [
     title: "Rektoff - Cohort 3",
     timeline: "Jan 2026 – Mar 2026",
     description:
-      "Focused on low-level Rust and Solana security with a final capstone project auditing a complex Solana program. Graduated with the strongest report in the entire cohort.",
+      "Focused on low-level Rust and Solana security with a final capstone project auditing a complex Solana program. Graduated with the strongest report in the cohort.",
     logo: rektoffLogo,
     href: "https://x.com/rektoff_xyz",
   },
