@@ -166,7 +166,7 @@ Error generating stack: `+e.message+`
       <a>Address book <span class="pm__pill">2</span></a>
       <span class="pm__navlabel">Governance</span>
       <a>Proposals</a>
-      <a>Spending limits</a>
+      <a>Auto-pay</a>
       <div class="pm__user"><b>JK</b> <span>Jordan Keil<br><em>jordan@northvale.co</em></span></div>
     </aside>
     <main class="pm__main">
@@ -185,10 +185,10 @@ Error generating stack: `+e.message+`
         <thead><tr><th>Vendor</th><th>Source</th><th>Amount</th><th>Origin</th><th>Status</th></tr></thead>
         <tbody>
           <tr><td class="vendor">Bangalore Ops Pvt Ltd</td><td class="pm__src">Operating</td><td>2,176.67 <span class="usdc">USDC</span></td><td><span class="pm__origin">Single</span></td><td><span class="badge b-signing">Signing</span></td></tr>
-          <tr><td class="vendor">Lumen Cloud Inc</td><td class="pm__src">Operating</td><td>940.00 <span class="usdc">USDC</span></td><td><span class="pm__origin">AP run</span></td><td><span class="badge b-settled">Settled</span><span class="sl">SL</span></td></tr>
+          <tr><td class="vendor">Lumen Cloud Inc</td><td class="pm__src">Operating</td><td>940.00 <span class="usdc">USDC</span></td><td><span class="pm__origin">AP run</span></td><td><span class="badge b-settled">Settled</span><span class="sl">Auto</span></td></tr>
           <tr><td class="vendor">Rio Dise&#241;o SA</td><td class="pm__src">Operating</td><td>3,500.00 <span class="usdc">USDC</span></td><td><span class="pm__origin">Single</span></td><td><span class="badge b-received">Received</span></td></tr>
           <tr><td class="vendor">Praxis Legal LLP</td><td class="pm__src">Payroll reserve</td><td>1,250.00 <span class="usdc">USDC</span></td><td><span class="pm__origin">Single</span></td><td><span class="badge b-exception">Exception</span></td></tr>
-          <tr><td class="vendor">Northwind Hosting</td><td class="pm__src">Operating</td><td>610.40 <span class="usdc">USDC</span></td><td><span class="pm__origin">AP run</span></td><td><span class="badge b-settled">Settled</span><span class="sl">SL</span></td></tr>
+          <tr><td class="vendor">Northwind Hosting</td><td class="pm__src">Operating</td><td>610.40 <span class="usdc">USDC</span></td><td><span class="pm__origin">AP run</span></td><td><span class="badge b-settled">Settled</span><span class="sl">Auto</span></td></tr>
           <tr><td class="vendor">Meridian Translations</td><td class="pm__src">Operating</td><td>480.00 <span class="usdc">USDC</span></td><td><span class="pm__origin">Single</span></td><td><span class="badge b-reviewed">Reviewed</span></td></tr>
           <tr><td class="vendor">Cobalt Studio</td><td class="pm__src">Operating</td><td>5,200.00 <span class="usdc">USDC</span></td><td><span class="pm__origin">Single</span></td><td><span class="badge b-send">Send</span></td></tr>
           <tr><td class="vendor">Atlas Freight Co</td><td class="pm__src">Operating</td><td>1,845.20 <span class="usdc">USDC</span></td><td><span class="pm__origin">Q1 logistics</span></td><td><span class="badge b-settled">Settled</span></td></tr>
