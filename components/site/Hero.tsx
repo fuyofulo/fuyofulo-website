@@ -252,7 +252,7 @@ export function Hero() {
               decimal
             </a>{" "}
             — teaching AI to pay the bills. everything
-            <br className="hero14-bio-br" />
+            <br className="hero14-bio-br" />{" "}
             else about me is scattered around this page.
           </p>
         </div>
