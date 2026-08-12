@@ -427,7 +427,6 @@ a.hero14-bio-link:hover {
    Height and scale come from custom properties set on <html> before first
    paint — see FitFrame. The fallbacks are what renders if JS never runs. */
 .fitframe-outer {
-  height: var(--fit-box-h, 100vh);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -454,9 +453,6 @@ a.hero14-bio-link:hover {
   flex: 0 0 auto;
   width: var(--fit-w);
   height: var(--fit-h);
-  /* Set only by centered frames — splits leftover space above/below. */
-  margin-top: var(--fit-mt, 0px);
-  transform: scale(var(--fit-scale, 1));
   transform-origin: top center;
 }
 
@@ -1224,11 +1220,11 @@ a.hero14-bio-link:hover {
 
 .hero14m {
   position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
+  width: 100%;
+  height: 100%;
   background: var(--cream);
   overflow: hidden;
-  padding: 0 16px 120px;
+  padding: 0 16px;
 }
 
 .hero14m-deco {

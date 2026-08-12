@@ -21,20 +21,22 @@ import { useEffect, useLayoutEffect, useRef, type ReactNode } from "react";
    visibly zooms once JS hydrates. Keeping it off the React-rendered style
    attribute also avoids a hydration mismatch. */
 
-const SCALE_VAR = "--fit-scale";
-const BOX_VAR = "--fit-box-h";
-const MT_VAR = "--fit-mt";
-
 /* Runs inline, before paint. Kept terse because it ships as a string. */
-function preScale(width: number, height: number, fold: number, centered: boolean) {
+function preScale(
+  width: number,
+  height: number,
+  fold: number,
+  centered: boolean,
+  pfx: string,
+) {
   return `(function(){try{
 var e=document.currentScript.previousElementSibling;if(!e)return;
 var r=document.documentElement.style;
 var p=parseFloat(getComputedStyle(e).paddingTop)||0;
 var s=Math.min(innerWidth/${width},(innerHeight-p)/${fold});
-r.setProperty("${SCALE_VAR}",s);
-r.setProperty("${BOX_VAR}",Math.max(innerHeight,p+${height}*s)+"px");
-r.setProperty("${MT_VAR}",${centered ? `Math.max(0,(innerHeight-p-${height}*s)/2)` : "0"}+"px");
+r.setProperty("${pfx}-scale",s);
+r.setProperty("${pfx}-box-h",Math.max(innerHeight,p+${height}*s)+"px");
+r.setProperty("${pfx}-mt",${centered ? `Math.max(0,(innerHeight-p-${height}*s)/2)` : "0"}+"px");
 }catch(_){}})();`;
 }
 
@@ -56,6 +58,10 @@ export function FitFrame({
      height — flex centering can't do this because transform:scale() doesn't
      change layout size. Only for frames with no navbar row at their top edge. */
   centered = false,
+  /* CSS-variable namespace for this instance. Two frames can coexist on one
+     page (e.g. hidden desktop + visible mobile) only if they write different
+     vars — the defaults match the original global names. */
+  varPrefix = "--fit",
   children,
 }: {
   width: number;
@@ -63,6 +69,7 @@ export function FitFrame({
   className?: string;
   foldHeight?: number;
   centered?: boolean;
+  varPrefix?: string;
   children: ReactNode;
 }) {
   const outerRef = useRef<HTMLDivElement>(null);
@@ -83,17 +90,17 @@ export function FitFrame({
         (window.innerHeight - padTop) / fold,
       );
 
-      root.setProperty(SCALE_VAR, String(scale));
+      root.setProperty(`${varPrefix}-scale`, String(scale));
       /* Never shorter than the viewport, or the background stops before the
          bottom of the screen and the page shows through underneath. */
       root.setProperty(
-        BOX_VAR,
+        `${varPrefix}-box-h`,
         `${Math.max(window.innerHeight, padTop + height * scale)}px`,
       );
       /* Vars are global on <html>, so non-centered pages must reset this or
          they'd inherit the offset from a previously visited centered page. */
       root.setProperty(
-        MT_VAR,
+        `${varPrefix}-mt`,
         centered
           ? `${Math.max(0, (window.innerHeight - padTop - height * scale) / 2)}px`
           : "0px",
@@ -103,13 +110,14 @@ export function FitFrame({
     fit();
     window.addEventListener("resize", fit);
     return () => window.removeEventListener("resize", fit);
-  }, [width, height, fold, centered]);
+  }, [width, height, fold, centered, varPrefix]);
 
   return (
     <>
       <div
         ref={outerRef}
         className={`fitframe-outer${className ? ` ${className}` : ""}`}
+        style={{ height: `var(${varPrefix}-box-h, 100vh)` }}
       >
         <div
           className="fitframe"
@@ -117,6 +125,8 @@ export function FitFrame({
             {
               "--fit-w": `${width}px`,
               "--fit-h": `${height}px`,
+              marginTop: `var(${varPrefix}-mt, 0px)`,
+              transform: `scale(var(${varPrefix}-scale, 1))`,
             } as React.CSSProperties
           }
         >
@@ -128,7 +138,7 @@ export function FitFrame({
           applied to read the reserved navbar padding. */}
       <script
         dangerouslySetInnerHTML={{
-          __html: preScale(width, height, fold, centered),
+          __html: preScale(width, height, fold, centered, varPrefix),
         }}
       />
     </>

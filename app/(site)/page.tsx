@@ -20,7 +20,19 @@ export default function Home() {
         </FitFrame>
       </div>
       <div className="hero-mobile-only">
-        <MobileHero />
+        {/* Same fit-to-screen treatment as desktop: the 390x844 composition
+            scales to the phone's actual viewport so nothing falls off the
+            bottom. Own var namespace so it can't fight the hidden desktop
+            frame's scale vars. */}
+        <FitFrame
+          width={390}
+          height={844}
+          className="fitframe-outer--cream"
+          varPrefix="--fitm"
+          centered
+        >
+          <MobileHero />
+        </FitFrame>
       </div>
     </>
   );
