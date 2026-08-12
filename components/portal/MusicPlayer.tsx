@@ -66,18 +66,36 @@ export function useMusicPlayer(): MusicPlayerCtx {
   return ctx;
 }
 
+/* The YouTube embed is ~1.3MB of script + iframe. Nothing loads until the
+   first play() call — visitors who never touch the vinyl pay nothing. play()
+   before the player exists queues the intent; onReady flushes it. */
 export function MusicPlayerProvider({ children }: { children: ReactNode }) {
   const hostRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<YTPlayer | null>(null);
+  const initStartedRef = useRef(false);
+  const pendingPlayRef = useRef(false);
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
 
   useEffect(() => {
-    let cancelled = false;
+    return () => {
+      try {
+        playerRef.current?.destroy();
+      } catch {
+        /* ignore */
+      }
+      playerRef.current = null;
+      initStartedRef.current = false;
+    };
+  }, []);
 
-    function init() {
-      if (cancelled || !hostRef.current || !window.YT) return;
+  const ensureInit = useCallback(() => {
+    if (initStartedRef.current) return;
+    initStartedRef.current = true;
+
+    function createPlayer() {
+      if (!hostRef.current || !window.YT || playerRef.current) return;
       const host = document.createElement("div");
       hostRef.current.innerHTML = "";
       hostRef.current.appendChild(host);
@@ -96,16 +114,22 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
         },
         events: {
           onReady: () => {
-            if (cancelled) return;
             try {
               playerRef.current?.setVolume?.(60);
             } catch {
               /* ignore */
             }
             setReady(true);
+            if (pendingPlayRef.current) {
+              pendingPlayRef.current = false;
+              try {
+                playerRef.current?.playVideo();
+              } catch {
+                /* ignore */
+              }
+            }
           },
           onStateChange: (event) => {
-            if (cancelled) return;
             const states = window.YT?.PlayerState;
             if (!states) return;
             if (event.data === states.PLAYING) setPlaying(true);
@@ -121,13 +145,13 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
     }
 
     if (window.YT && window.YT.Player) {
-      init();
+      createPlayer();
     } else {
       // hand off to the API loader callback
       const previous = window.onYouTubeIframeAPIReady;
       window.onYouTubeIframeAPIReady = () => {
         previous?.();
-        init();
+        createPlayer();
       };
       if (!document.querySelector(`script[src="${API_SRC}"]`)) {
         const tag = document.createElement("script");
@@ -136,27 +160,23 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
         document.body.appendChild(tag);
       }
     }
-
-    return () => {
-      cancelled = true;
-      try {
-        playerRef.current?.destroy();
-      } catch {
-        /* ignore */
-      }
-      playerRef.current = null;
-    };
   }, []);
 
   const play = useCallback(() => {
-    try {
-      playerRef.current?.playVideo();
-    } catch {
-      /* ignore */
+    if (playerRef.current && ready) {
+      try {
+        playerRef.current.playVideo();
+      } catch {
+        /* ignore */
+      }
+      return;
     }
-  }, []);
+    pendingPlayRef.current = true;
+    ensureInit();
+  }, [ready, ensureInit]);
 
   const pause = useCallback(() => {
+    pendingPlayRef.current = false;
     try {
       playerRef.current?.pauseVideo();
     } catch {
@@ -165,7 +185,7 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const toggle = useCallback(() => {
-    if (playing) pause();
+    if (playing || pendingPlayRef.current) pause();
     else play();
   }, [playing, play, pause]);
 

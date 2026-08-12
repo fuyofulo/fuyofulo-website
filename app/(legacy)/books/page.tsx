@@ -1,4 +1,4 @@
-import { BooksLibrary } from "../../components/portal/books/BooksLibrary";
+import { BooksLibrary } from "../../../components/portal/books/BooksLibrary";
 
 export const metadata = {
   title: "books | fuyofulo",

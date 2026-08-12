@@ -1,0 +1,1303 @@
+/* ============================================================
+   fuyofulo — redesigned personal site
+   Tokens and shared primitives from design_handoff_personal_website.
+   Legacy retro styles live in globals.css, scoped to .portal.
+   ============================================================ */
+
+@font-face {
+  font-family: "Game Paused";
+  src: url("/fonts/gamepaused-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fearlessly Authentic";
+  src: url("/fonts/fearlessly-authentic-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fearlessly Authentic";
+  src: url("/fonts/fearlessly-authentic-fearlessly-authentic-regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.site {
+  /* section backgrounds */
+  --cream: #fffaf5;
+  --espresso: #241710;
+  --navy: #282b4a;
+  --paper: #f4f0dd;
+
+  /* accents */
+  --berry: #8b2a4a;
+  --pink: #ffdfef;
+  --tan: #dca96e;
+  --pale-green: #ccffbc;
+  --bone: #eeebda;
+  --purple: #a88aed;
+  --olive: #a6c261;
+  --yellow: #f5d76e;
+  --ink: #1a1a1a;
+
+  --text-primary: #2a1219;
+  --text-muted: #6b5560;
+
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono",
+    Menlo, Consolas, monospace;
+  --font-pen: "Nanum Pen Script", cursive;
+  --font-serif: "Instrument Serif", serif;
+  --font-game: "Game Paused", monospace;
+  --font-fearless: "Fearlessly Authentic", serif;
+
+  /* layout: design is authored at 1440 with 72px side + 29px inner gutters */
+  --gutter: 101px;
+  /* Thinner than the design's 64px. The hairline is an inset shadow rather than
+     a border so it sits outside the box and the space above and below the nav
+     content stays exactly equal. */
+  --nav-h: 52px;
+
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  background: var(--cream);
+  min-height: 100vh;
+}
+
+/* Each section is its own route now. Clear the fixed 64px navbar and let the
+   section's own background fill the viewport rather than leaving cream below. */
+.page {
+  padding-top: var(--nav-h);
+}
+
+.page > .section {
+  min-height: calc(100vh - var(--nav-h));
+}
+
+.site a {
+  text-decoration: none;
+}
+
+.site *,
+.site *::before,
+.site *::after {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   motion
+   ============================================================ */
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes spinrec {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* The float lives on an inner wrapper so it composes with the placement
+   rotation on the parent rather than overwriting it. */
+.floaty {
+  animation: floaty var(--float-dur, 8s) ease-in-out var(--float-delay, 0s)
+    infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floaty,
+  .vinyl-sheen {
+    animation: none !important;
+  }
+  .site * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   section frame
+   ============================================================ */
+
+.section {
+  position: relative;
+  padding: 56px 72px;
+  overflow: hidden;
+}
+
+.section-inner {
+  padding: 0 29px;
+}
+
+.section-lede {
+  margin: 0;
+  font: 400 15px/1.7 var(--font-mono);
+  max-width: 760px;
+}
+
+/* ============================================================
+   hero 14a — chaos / cleaned-up sticker scene
+   Fixed 1440x800 canvas; FitFrame scales it to the window. All
+   sticker geometry is inline in Hero.tsx (mode-dependent).
+   ============================================================ */
+
+.hero14-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--cream);
+  overflow: hidden;
+}
+
+/* ---- text ---- */
+
+.hero14-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+  padding: 120px 24px;
+}
+
+.hero14-namerow {
+  display: flex;
+  align-items: center;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero14-name-wrap {
+  position: relative;
+}
+
+.hero14-name {
+  position: relative;
+  font-family: var(--font-pen);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  /* Black, matching the fuyosmile sticker beside it. */
+  color: #000000;
+  margin: 0;
+  -webkit-text-stroke: 1.9px #000000;
+  transition: font-size 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* White sticker outline: an identical copy behind the real text. */
+.hero14-name--shadow {
+  position: absolute;
+  inset: 0;
+  color: #ffffff;
+  -webkit-text-stroke: 6px #ffffff;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.18));
+  user-select: none;
+  pointer-events: none;
+}
+
+.hero14-smile {
+  flex: 0 0 auto;
+  display: block;
+  margin-left: 24px;
+  margin-right: -32px;
+  transform: translate(-22px, -17px);
+  transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero14-bio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero14-tag {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-top: 16px;
+  letter-spacing: 0.04em;
+  transition: font-size 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero14-bio-text {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 550px;
+  margin: 9px 0 0;
+  transition: font-size 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* The text block is pointer-events:none so stickers stay clickable through it —
+   the decimal link opts back in. */
+a.hero14-bio-link {
+  pointer-events: auto;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.15s;
+}
+
+a.hero14-bio-link:hover {
+  color: var(--text-primary);
+}
+
+/* ---- stickers ---- */
+
+.hero14-sticker {
+  display: block;
+  text-decoration: none;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.hero14-vinyl {
+  cursor: pointer;
+}
+
+/* Hover lift lives on an inner wrapper so it composes with the placement
+   transform on the parent rather than overwriting it. */
+.hero14-lift {
+  transition: transform 0.2s;
+}
+
+.hero14-sticker:hover .hero14-lift {
+  transform: translateY(-6px);
+}
+
+.hero14-deco {
+  pointer-events: none;
+}
+
+/* ---- mode toggle ---- */
+
+.hero14-toggle {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 20;
+  transform: translateY(-260px);
+  pointer-events: none;
+}
+
+.hero14-toggle-btns {
+  display: flex;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.hero14-toggle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(42, 18, 25, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background: #fffef9;
+  color: #2a1219;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* Selected mode inverts: dark chip, cream icon. */
+.hero14-toggle-btn--active {
+  background: #2a1219;
+  color: var(--cream);
+  border-color: #2a1219;
+}
+/* ============================================================
+   scroll navbar
+   ============================================================ */
+
+.scrollnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 50;
+  box-shadow: inset 0 -1px 0 var(--nav-border), 0 8px 32px rgba(0, 0, 0, 0.08);
+  background: var(--nav-bg);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scrollnav-mascot {
+  width: 44px;
+  display: block;
+  flex: 0 0 auto;
+}
+
+.scrollnav-links {
+  display: flex;
+  gap: 36px;
+  font: 500 14px var(--font-mono);
+  margin: 0 auto;
+}
+
+.scrollnav-links a {
+  color: var(--nav-link);
+  transition: opacity 0.15s;
+}
+
+.scrollnav-links a:hover {
+  opacity: 0.6;
+}
+
+.scrollnav-music {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  flex: 0 0 auto;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.scrollnav-music-label {
+  font: 500 11px var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nav-label);
+}
+
+.scrollnav-vinyl {
+  position: relative;
+  width: 38px;
+  flex: 0 0 auto;
+}
+
+.scrollnav-vinyl img {
+  width: 100%;
+  display: block;
+}
+
+/* palette variants */
+.nav-cream {
+  --nav-bg: #fffaf5;
+  --nav-border: rgba(92, 31, 51, 0.15);
+  --nav-link: #2a1219;
+  --nav-label: #8b2a4a;
+}
+
+.nav-espresso {
+  --nav-bg: #241710;
+  --nav-border: rgba(247, 238, 225, 0.15);
+  --nav-link: #f7eee1;
+  --nav-label: #dca96e;
+}
+
+.nav-navy {
+  --nav-bg: #282b4a;
+  --nav-border: rgba(238, 235, 218, 0.15);
+  --nav-link: #eeebda;
+  --nav-label: #ccffbc;
+}
+
+.nav-paper {
+  --nav-bg: #f4f0dd;
+  --nav-border: rgba(26, 26, 26, 0.15);
+  --nav-link: #1a1a1a;
+  --nav-label: #8b2a4a;
+}
+
+/* vinyl sheen — the spinning record highlight */
+.vinyl-sheen-clip {
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
+  aspect-ratio: 1;
+}
+
+.vinyl-sheen {
+  position: absolute;
+  inset: -20%;
+  background: conic-gradient(
+    rgba(255, 255, 255, 0) 0deg,
+    rgba(255, 255, 255, 0.5) 24deg,
+    rgba(255, 255, 255, 0) 60deg,
+    rgba(120, 60, 90, 0.12) 150deg,
+    rgba(255, 255, 255, 0) 200deg,
+    rgba(255, 255, 255, 0.34) 264deg,
+    rgba(255, 255, 255, 0) 300deg
+  );
+  mix-blend-mode: soft-light;
+  animation: spinrec 1.4s linear infinite;
+}
+
+/* ============================================================
+   fixed-frame pages
+   ============================================================ */
+
+/* Top-aligned, not centered: the navbar lives at the frame's top edge, so any
+   leftover space from the aspect-ratio difference has to fall to the bottom
+   where it reads as padding against a matching background. */
+/* Top-aligned, not centered: the navbar lives at the frame's top edge, so any
+   leftover space from the aspect-ratio difference has to fall to the bottom
+   where it reads as padding against a matching background.
+   Height and scale come from custom properties set on <html> before first
+   paint — see FitFrame. The fallbacks are what renders if JS never runs. */
+.fitframe-outer {
+  height: var(--fit-box-h, 100vh);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.fitframe-outer--espresso {
+  background: var(--espresso);
+}
+
+.fitframe-outer--cream {
+  background: var(--cream);
+}
+
+/* Reserves room for the fixed navbar, which stays outside the frame so it isn't
+   multiplied by the frame scale. Padding rather than margin so the section
+   background covers the strip behind the nav, and so FitFrame can read it to
+   work out the available height. */
+.fitframe-outer--below-nav {
+  padding-top: var(--nav-h);
+}
+
+.fitframe {
+  flex: 0 0 auto;
+  width: var(--fit-w);
+  height: var(--fit-h);
+  /* Set only by centered frames — splits leftover space above/below. */
+  margin-top: var(--fit-mt, 0px);
+  transform: scale(var(--fit-scale, 1));
+  transform-origin: top center;
+}
+
+/* ============================================================
+   reading (espresso) — frame 11a, 1440x800 incl. navbar
+   ============================================================ */
+
+.reading-content {
+  background: var(--espresso);
+  padding: 24px 72px 36px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+}
+
+.reading-cat {
+  position: absolute;
+  z-index: 12;
+  right: 60px;
+  top: 45px;
+  width: 265px;
+  display: block;
+  transform: rotate(-3deg);
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
+  pointer-events: none;
+}
+
+.reading-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+}
+
+.reading-titlerow {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  padding: 0 29px;
+}
+
+.reading-title {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding-bottom: 4px;
+}
+
+.reading-title img {
+  display: block;
+}
+
+.reading-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  margin: 0 29px;
+}
+
+/* ---- selected book highlight ---- */
+
+.reading-spread {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+  flex: 1;
+  min-height: 0;
+  padding: 12px 0;
+  overflow: hidden;
+  transform: translateY(18px);
+}
+
+.reading-cover {
+  width: 185px;
+  aspect-ratio: 2 / 3;
+  background: #3a281a;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+.reading-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.reading-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.reading-book-title {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  line-height: 1.05;
+  font-weight: 700;
+  color: #ffffff;
+  text-wrap: balance;
+}
+
+.reading-book-sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(247, 238, 225, 0.75);
+  max-width: 680px;
+}
+
+.reading-book-author {
+  font: 500 12px var(--font-mono);
+  letter-spacing: 0.06em;
+  color: var(--tan);
+}
+
+.reading-book-notes {
+  margin-top: 10px;
+  font: 400 13.5px/1.75 var(--font-mono);
+  color: var(--pink);
+  max-width: 733px;
+}
+
+/* ---- bookshelf carousel ---- */
+
+/* The negative shift lines the first spine up with the highlight cover's
+   left edge, which the 28px paddle would otherwise push inward. */
+.shelf-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 0 0;
+  height: 252px;
+  margin-top: auto;
+  flex: 0 0 auto;
+  transform: translateX(-36.5px);
+}
+
+.shelf-paddle {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(247, 238, 225, 0.5);
+  font: 600 18px var(--font-mono);
+  border-radius: 8px;
+  background: none;
+  border: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.shelf-paddle:hover {
+  background: rgba(247, 238, 225, 0.08);
+  color: rgba(247, 238, 225, 0.9);
+}
+
+/* 700px shows exactly 4 spines + the open book + 4 spines */
+.shelf-viewport {
+  flex: 0 0 auto;
+  width: 700px;
+  overflow: hidden;
+}
+
+.shelf-strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.shelf-book {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  flex: 0 0 auto;
+  perspective: 1000px;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.shelf-spine {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 48px;
+  height: 240px;
+  flex: 0 0 auto;
+  transform-origin: right;
+  transform-style: preserve-3d;
+  filter: brightness(0.85) contrast(1.6);
+  box-shadow: inset -2px 0 6px rgba(0, 0, 0, 0.35);
+}
+
+.shelf-spine-label {
+  margin-top: 12px;
+  font: 600 11px var(--font-mono);
+  letter-spacing: 0.04em;
+  writing-mode: vertical-rl;
+  user-select: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-height: 210px;
+}
+
+.shelf-cover {
+  position: relative;
+  flex: 0 0 auto;
+  width: 156px;
+  height: 240px;
+  overflow: hidden;
+  transform-origin: left;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  filter: brightness(0.9) contrast(1.4);
+  background: #3a281a;
+}
+
+.shelf-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* page-edge highlight down the left of an open cover */
+.shelf-cover-edge {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 2px,
+    rgba(255, 255, 255, 0.5) 3px,
+    rgba(255, 255, 255, 0.25) 4px,
+    rgba(255, 255, 255, 0.25) 6px,
+    transparent 7px,
+    transparent 9px,
+    rgba(255, 255, 255, 0.25) 9px,
+    transparent 12px
+  );
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  filter: url(#paper-grain);
+}
+
+/* ---- suggest-a-book sticky note ---- */
+
+.shelf-note-slot {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.sticky-note {
+  position: relative;
+  height: 240px;
+  width: 260px;
+  transform: translateX(81.5px);
+  display: flex;
+  flex-direction: column;
+  background: var(--pink);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+  padding: 20px 20px 16px;
+}
+
+.sticky-note-tape {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(3deg);
+  width: 104px;
+  height: 27px;
+  background: rgba(255, 223, 190, 0.75);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.sticky-note-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+}
+
+.sticky-note-title {
+  font-family: var(--font-pen);
+  font-size: 24px;
+  line-height: 1.1;
+  color: #2a1219;
+  transform: rotate(-1deg);
+}
+
+.sticky-note-help {
+  font: 400 11px/1.6 var(--font-mono);
+  color: rgba(42, 18, 25, 0.65);
+}
+
+.sticky-note input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px dashed rgba(42, 18, 25, 0.3);
+  padding: 3px 2px;
+  font-family: var(--font-pen);
+  font-size: 17px;
+  color: #2a1219;
+  outline: none;
+  width: 100%;
+}
+
+.sticky-note input::placeholder {
+  color: rgba(42, 18, 25, 0.45);
+}
+
+.sticky-note input:focus {
+  border-bottom-color: var(--berry);
+}
+
+.sticky-note-send {
+  cursor: pointer;
+  font-family: var(--font-pen);
+  font-size: 20px;
+  color: var(--berry);
+  transform: rotate(-2deg);
+  user-select: none;
+  border: none;
+  border-bottom: 2px solid var(--berry);
+  background: none;
+  padding: 0;
+  align-self: flex-end;
+  margin-top: auto;
+}
+
+.sticky-note-send:hover {
+  color: #a23458;
+}
+/* ============================================================
+   engineering (navy) — frame 12a, 1440x1580
+   Fold at 800 (design) / 736 (content, navbar excluded).
+   ============================================================ */
+
+.fitframe-outer--navy {
+  background: var(--navy);
+}
+
+.eng-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--navy);
+}
+
+/* Design frame pads 56/72 with the navbar pulled full-bleed; with the navbar
+   outside, that leaves a 24px gap above the title and 56px at the bottom. */
+.eng-content {
+  position: relative;
+  z-index: 13;
+  padding: 24px 72px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.eng-sticker {
+  position: absolute;
+  z-index: 12;
+  display: block;
+  image-rendering: pixelated;
+}
+
+.eng-title {
+  padding: 0 29px;
+  margin: 10px 0 0;
+  font-family: var(--font-game);
+  font-weight: 400;
+  font-size: 70px;
+  line-height: 1;
+  color: var(--bone);
+}
+
+.eng-h2 {
+  font-family: var(--font-game);
+  font-weight: 400;
+  font-size: 26px;
+  color: var(--bone);
+  margin: 0;
+}
+
+.eng-h2--sm {
+  font-family: var(--font-game);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--bone);
+  margin: 0;
+}
+
+/* ---- programs & fellowships ---- */
+
+.eng-programs {
+  padding: 0 29px;
+  margin-top: -8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 680px;
+}
+
+.eng-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.eng-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 7px 10px;
+  margin: 0 -10px;
+  border-radius: 8px;
+  border-bottom: 1px dashed rgba(238, 235, 218, 0.18);
+  transition: background 0.15s;
+}
+
+.eng-row:last-child {
+  border-bottom: none;
+}
+
+.eng-row:hover {
+  background: rgba(238, 235, 218, 0.06);
+}
+
+.eng-row-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.eng-row-name {
+  font: 600 12px var(--font-mono);
+  color: var(--pale-green);
+  white-space: nowrap;
+}
+
+.eng-row-dates {
+  font: 400 10.5px var(--font-mono);
+  color: var(--pale-green);
+  white-space: nowrap;
+}
+
+.eng-row-desc {
+  font: 400 11.5px/1.55 var(--font-mono);
+  color: rgba(238, 235, 218, 0.6);
+}
+
+/* ---- decimal + pixel monitor ---- */
+
+.eng-decimal {
+  padding: 0 29px;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.decimal-block {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.monitor-wrap {
+  flex: 0 0 auto;
+  margin: 8px;
+}
+
+.monitor {
+  position: relative;
+  box-sizing: content-box;
+  padding: 10px;
+  background: #3a3e63;
+  box-shadow: 0 0 0 2px #0a0b16;
+}
+
+.monitor-edge {
+  position: absolute;
+}
+
+.monitor-screen {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 0 0 2px #0a0b16;
+}
+
+.monitor-screen iframe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1512px;
+  height: 945px;
+  border: none;
+  pointer-events: none;
+  transform-origin: 0 0;
+}
+
+.decimal-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 640px;
+  padding-top: 12px;
+}
+
+.decimal-name {
+  font-family: var(--font-game);
+  font-weight: 400;
+  font-size: 40px;
+  color: var(--bone);
+}
+
+.decimal-copy p {
+  margin: 0;
+  font: 400 17px/1.9 var(--font-mono);
+  color: rgba(238, 235, 218, 0.65);
+}
+
+.decimal-link {
+  font: 500 16px var(--font-mono);
+  color: var(--pale-green);
+  white-space: nowrap;
+  border-bottom: 1px solid var(--pale-green);
+  padding-bottom: 2px;
+  align-self: flex-start;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.decimal-link:hover {
+  color: var(--bone);
+  border-color: var(--bone);
+}
+
+/* ---- other projects (below the fold) ---- */
+
+.eng-projects {
+  padding: 0 29px;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.projects-card {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 20px 32px;
+  background: rgba(238, 235, 218, 0.04);
+  border-radius: 10px;
+  outline: 1px dashed rgba(238, 235, 218, 0.3);
+  outline-offset: -1px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 64px;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 12px;
+  margin: 0 -12px;
+  border-radius: 10px;
+  transition: background 0.15s;
+}
+
+.project:hover {
+  background: rgba(238, 235, 218, 0.06);
+}
+
+.project-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.project-name {
+  font: 600 16px var(--font-mono);
+  color: var(--pale-green);
+}
+
+.project-tags {
+  font: 400 11px var(--font-mono);
+  color: rgba(238, 235, 218, 0.55);
+  white-space: nowrap;
+}
+
+.project-desc {
+  font: 400 13px/1.7 var(--font-mono);
+  color: rgba(238, 235, 218, 0.65);
+}
+
+/* full-bleed footer row inside the card */
+.projects-all {
+  font: 500 13px var(--font-mono);
+  color: var(--pale-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 32px;
+  margin: -28px -32px -20px;
+  border-radius: 0 0 10px 10px;
+  transition: background 0.15s;
+}
+
+.projects-all:hover {
+  background: rgba(238, 235, 218, 0.06);
+}
+
+.projects-all svg {
+  margin-right: 8px;
+}
+/* ============================================================
+   writing (paper)
+   ============================================================ */
+
+.writing {
+  background: var(--paper);
+}
+
+.writing-title {
+  font-family: var(--font-fearless);
+  font-style: italic;
+  font-size: 76px;
+  line-height: 1;
+  color: var(--purple);
+  margin: 10px 0 0;
+}
+
+.writing-lede {
+  color: #5e5b57;
+  margin-top: 6px;
+}
+
+.writing-buttons {
+  display: flex;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.writing-button {
+  flex: 1;
+  font: 600 13px var(--font-mono);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 14px;
+  text-align: center;
+  transition: background 0.15s, color 0.15s;
+}
+
+.writing-button--substack {
+  background: var(--olive);
+}
+
+.writing-button--medium {
+  background: #fffdf7;
+}
+
+.writing-button:hover {
+  background: var(--ink);
+  color: var(--yellow);
+}
+
+/* ============================================================
+   responsive — the design is authored at 1440px fixed.
+   Below that we scale gutters down and collapse the multi-column
+   pieces rather than attempting a true mobile redesign (not yet
+   designed; see handoff README "Planned, not yet designed").
+   ============================================================ */
+
+@media (max-width: 1200px) {
+  .section {
+    padding: 48px 40px;
+  }
+  .section-inner {
+    padding: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .writing-title {
+    font-size: 52px;
+  }
+  .writing-buttons {
+    flex-direction: column;
+  }
+  .scrollnav-links {
+    gap: 18px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 40px 20px;
+  }
+  .scrollnav {
+    padding: 0 16px;
+  }
+  .scrollnav-links {
+    display: none;
+  }
+}
+
+/* ---- fluid fallback ----
+   Below 1024 the frame is abandoned rather than scaled (a 1440 frame on a phone
+   would render the 13.5px bio at ~4px) and the identity block reflows.
+   Mobile is not designed yet. */
+
+/* Defined after .fitframe so it wins on width/height/transform. */
+.fitframe--fluid {
+  width: 100%;
+  height: auto;
+  margin-top: 0;
+  min-height: 100vh;
+  transform: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fitframe--fluid .hero14-scene {
+  height: auto;
+}
+
+.fitframe--fluid .hero14-text {
+  position: relative;
+  inset: auto;
+  padding: 80px 24px;
+}
+
+/* Inline mode offsets/sizes assume the 1440 frame; neutralize them when the
+   frame is gone. !important is deliberate — these fight inline styles. */
+.fitframe--fluid .hero14-namerow,
+.fitframe--fluid .hero14-bio {
+  transform: none !important;
+}
+
+.fitframe--fluid .hero14-name {
+  font-size: 60px !important;
+}
+
+.fitframe--fluid .hero14-smile {
+  width: 84px !important;
+}
+
+/* The fixed break assumes the 550px desktop measure; let the phone wrap
+   naturally. */
+.fitframe--fluid .hero14-bio-br {
+  display: none;
+}
+
+/* No frame edges to anchor against, so they'd land on the text block —
+   and the mode toggle is meaningless without them. */
+.fitframe--fluid .hero14-sticker,
+.fitframe--fluid .hero14-deco,
+.fitframe--fluid .hero14-toggle {
+  display: none;
+}

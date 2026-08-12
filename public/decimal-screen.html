@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Decimal — landing hero (static mock, 1512×945)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Instrument+Serif&display=swap" rel="stylesheet" />
+<style>
+/* ══════════════════════════════════════════════════════════════════════════
+   Decimal landing hero — static snapshot of decimal.finance as it renders at
+   the MacBook Pro 14" logical resolution (1512×945).
+
+   Values are copied from the production source, not eyeballed:
+     tokens          frontend/src/pages/landing-v4/landing4.css
+     hero markup     frontend/src/pages/landing-v4/hero.tsx
+     marker path     frontend/src/pages/landing-v4/shared.tsx
+     .btn / .mono    frontend/src/styles/decimal/components.css
+   No JS, no build step, no repo imports. The two bitmaps live in ./assets.
+   The production hero is 952px tall; the bottom 7px fall outside the 945
+   viewport exactly as they do on a real 14" screen.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --ink: #5C1F33;
+  --band: #F5F4F2;
+  --accent: #5C1F33;
+  --accent-contrast: #FFFFFF;
+  --primary: #5C1F33;
+  --primary-contrast: #FFFFFF;
+  --bg-canvas: #FFFFFF;
+  --bg-surface: #FFFFFF;
+  --bg-surface-2: #F5F4F2;
+  --border: #EAE8E4;
+  --text-primary: #0A0A0A;
+  --text-muted: #5E5B57;
+  --text-faint: #9A9690;
+  --solid: #0A0A0A;
+  --danger: #8B2A22;
+  --highlight: #F9C6D0;
+  --dw: 500;
+  --font-display: 'Instrument Serif', serif;
+  --font-body: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', 'Menlo', monospace;
+  --btn-font: 'Geist Mono', ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: #E9E7E3;
+  font-family: var(--font-body);
+  font-size: 14px;
+  /* the app root (.dec) sets this; without it every line box that doesn't
+     declare its own runs short and the panels drift out of alignment */
+  line-height: 1.45;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+a { text-decoration: none; color: inherit; }
+
+/* the fixed device screen ------------------------------------------------- */
+#screen {
+  width: 1512px;
+  height: 945px;
+  overflow: hidden;
+  position: relative;
+  background: #FFFFFF;
+  flex: none;
+}
+
+/* buttons ----------------------------------------------------------------- */
+.btn {
+  font-family: var(--btn-font);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  height: 36px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+}
+.btn-primary { background: var(--primary); color: var(--primary-contrast); border-color: var(--primary); }
+.btn-sm { height: 28px; padding: 0 14px; gap: 6px; }
+
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+
+/* marker highlight -------------------------------------------------------- */
+mark.mk {
+  position: relative;
+  background: transparent;
+  color: inherit;
+  z-index: 0;
+  padding: 0 8px 2px;
+  margin-left: -8px;
+}
+mark.mk > svg {
+  position: absolute;
+  inset: -2% -1.5%;
+  width: 103%;
+  height: 104%;
+  z-index: -1;
+}
+
+/* hero shell -------------------------------------------------------------- */
+.hero { position: relative; background: #FFFFFF; overflow: hidden; padding-bottom: 88px; }
+
+/* nav --------------------------------------------------------------------- */
+.nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding: 18px 84px 18px 72px;
+}
+.logo {
+  font: var(--dw) 22px var(--font-display);
+  letter-spacing: -.01em;
+  color: var(--ink);
+  transform: translateX(12px);
+}
+.logo span { color: var(--accent); }
+.nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 30px;
+  font-size: 14px;
+  color: var(--text-muted);
+  padding-right: 28px;
+}
+
+/* hero grid --------------------------------------------------------------- */
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 476px) minmax(0, 1fr);
+  gap: 44px;
+  align-items: start;
+  padding: 64px 0 0 72px;
+}
+.copy-col {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 28px;
+  transform: translateX(12px);
+}
+.copy-col h1 {
+  margin: 0;
+  font: var(--dw) 48px/1.05 var(--font-display);
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.copy-col p.sub {
+  margin: 14px 0 0;
+  font-size: 15.5px;
+  line-height: 1.55;
+  max-width: 400px;
+  color: var(--text-muted);
+}
+.cta-row { display: flex; gap: 12px; margin-top: 22px; }
+.cta-row .btn { height: 40px; padding: 0 20px; font-size: 13px; }
+
+/* the two cards under the copy — widths as production resolves them at 1512 */
+.cards {
+  margin-top: 36px;
+  flex: 1;
+  display: flex;
+  gap: 18px;
+  align-items: stretch;
+  padding-right: 10px;
+}
+
+/* chart card -------------------------------------------------------------- */
+.chart {
+  width: 238px;
+  flex: none;
+  min-width: 0;
+  position: relative;
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-canvas);
+  padding: 16px 12px 6px 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.chart-title { font: var(--dw) 13px/1.15 var(--font-display); letter-spacing: -.01em; color: var(--ink); }
+.legend {
+  position: absolute;
+  top: 48px;
+  left: 14px;
+  z-index: 4;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 16px rgba(25, 12, 18, .10);
+  padding: 9px 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.legend-row { display: flex; align-items: center; gap: 8px; }
+.legend-sw { width: 11px; height: 11px; flex: none; }
+.legend-txt { display: flex; flex-direction: column; gap: 2px; }
+.legend-label { font-size: 9px; color: var(--text-muted); line-height: 1; font-family: 'Geist'; }
+.legend-val-row { display: flex; align-items: baseline; gap: 5px; }
+.legend-val { font-size: 11px; font-weight: 400; color: var(--text-primary); line-height: 1; font-family: 'Geist'; }
+.legend-chip {
+  font: 600 7px var(--font-mono);
+  font-family: 'Geist';
+  background: color-mix(in srgb, var(--ink) 9%, var(--bg-surface));
+  color: var(--text-muted);
+  padding: 1px 3px;
+}
+.chart-plot { flex: 1; min-height: 0; margin: 12px -12px 0 -14px; }
+.chart-plot svg { width: 100%; height: 100%; display: block; }
+
+/* slack card -------------------------------------------------------------- */
+.slack {
+  width: 210px;
+  flex: none;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.slack-tags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  margin-bottom: 8px;
+  padding: 0 14px;
+}
+.tag {
+  font: 500 7.5px var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--solid);
+  padding: 2px 7px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.tag-slack { border: .65px solid #EAE8E4; background: #EAE8E4; }
+.tag-active { padding: 3px 7px; background: #D9EAD9; }
+.tag-channel { border: .65px solid #DCE5EE; background: #DCE5EE; }
+.slack-card {
+  border: 1px solid var(--bg-canvas);
+  padding: 15px 14px;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-canvas);
+}
+.slack-head { display: flex; align-items: center; gap: 7px; }
+.slack-avatar { width: 16px; height: 16px; border: .65px solid var(--bg-canvas); object-fit: cover; flex: none; }
+.slack-name { font-size: 10px; color: var(--text-primary); font-weight: 400; }
+.slack-time { font-size: 8px; color: var(--text-faint); flex: none; }
+.slack-msg { margin-top: 8px; font-size: 8px; line-height: 1.55; color: var(--text-primary); }
+.slack-msg b { font-weight: 500; color: var(--text-primary); }
+.d-badge {
+  width: 13px; height: 13px;
+  border: .65px solid var(--bg-canvas);
+  background: var(--accent);
+  color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  font: 700 7.5px var(--font-display);
+  flex: none;
+}
+.app-chip {
+  font: 600 6px var(--font-mono);
+  letter-spacing: .04em;
+  background: var(--band);
+  color: var(--text-faint);
+  padding: 1px 3px;
+  border-radius: 2px;
+}
+.slack-bills { margin-top: 9px; border: 1px solid var(--border); }
+.sb-row { padding: 6px 9px; border-bottom: 1px solid var(--border); }
+.sb-row:last-child { border-bottom: none; }
+.sb-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.sb-vendor { font-size: 8px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sb-amount { font-size: 8px; color: var(--text-primary); font-family: 'Geist'; flex: none; }
+.sb-sub { margin-top: 2px; font-size: 8px; line-height: 1.5; color: var(--text-faint); }
+.slack-cta { margin-top: 10px; display: flex; }
+.slack-cta .btn { flex: 1; height: 22px; padding: 0 10px; font-size: 8px; }
+
+/* product frame ----------------------------------------------------------- */
+.frame-wrap {
+  position: relative;
+  min-width: 0;
+  align-self: start;
+  padding: 11px 0 0 11px;
+}
+/* ink hatch art, masked by the production bitmap; ends flush with the frame */
+.hatch {
+  position: absolute;
+  top: -17px;
+  left: -20px;
+  width: calc(100% + 35px);
+  height: calc(100% + 17px);
+  background: var(--ink);
+  -webkit-mask-image: url('art2-hatch.png');
+  mask-image: url('art2-hatch.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  pointer-events: none;
+}
+.frame {
+  position: relative;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 70px rgba(10, 10, 10, .10);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+}
+
+/* sidebar ----------------------------------------------------------------- */
+.sidebar {
+  border-right: 1px solid var(--border);
+  background: var(--band);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 0;
+}
+.side-mark {
+  width: 26px; height: 26px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  display: inline-flex; align-items: center; justify-content: center;
+  font: var(--dw) 14px var(--font-display);
+  margin-bottom: 22px;
+}
+.side-icon {
+  width: 32px; height: 32px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--text-faint);
+}
+.side-icon.is-active { color: var(--accent); background: var(--bg-surface-2); }
+.side-icon.gap { margin-top: 12px; }
+.side-icon.push { margin-top: auto; }
+.side-avatar { width: 26px; height: 26px; border-radius: 99px; border: 1px solid var(--border); object-fit: cover; margin-top: 6px; }
+
+/* bills screen ------------------------------------------------------------ */
+.screen-col { position: relative; min-width: 0; height: 715px; }
+.bills {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-surface);
+  z-index: 5;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.bills-head { display: flex; align-items: flex-start; gap: 16px; padding: 15px 30px 13px; }
+.bills-head h1 {
+  margin: 3px 0 0;
+  font: var(--dw) 23px var(--font-display);
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+.bills-head .sub { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+.bills-head .btn { margin-left: auto; flex: none; font-size: 11px; }
+
+.stats { display: flex; gap: 8px; padding: 2px 30px 6px; }
+.stat { flex: 1; background: var(--band); padding: 11px 13px; }
+.stat-label { font-size: 10px; color: var(--text-muted); }
+.stat-n { font: 400 25px var(--font-body); color: #1A1A1A; margin-top: 4px; line-height: 1; }
+.stat-sub { font-size: 9px; color: var(--text-faint); margin-top: 5px; }
+
+.tabs-row { display: flex; align-items: center; gap: 16px; padding: 9px 30px; }
+.tabs { display: flex; align-items: flex-end; gap: 24px; border-bottom: 1px solid var(--border); }
+.tab {
+  display: inline-flex; align-items: center; gap: 6px;
+  white-space: nowrap;
+  padding: 0 0 9px;
+  font: 500 11px var(--font-body);
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+.tab.is-active { font-weight: 600; color: var(--ink); border-bottom-color: var(--accent); }
+.tab .n { font-size: 9px; color: var(--text-faint); }
+.tab.is-active .n { color: var(--text-muted); }
+.tools { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.tool {
+  display: flex; align-items: center; gap: 6px;
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  background: var(--bg-surface);
+}
+.tool.search { color: var(--text-faint); }
+.tool.search span { font-size: 10px; color: var(--text-faint); }
+.tool.sort { font-size: 10px; color: var(--text-muted); gap: 6px; }
+
+.table-wrap { flex: 1; overflow: hidden; padding: 6px 30px 0; }
+table.bills-table { width: 100%; border-collapse: collapse; table-layout: auto; }
+.bills-table th {
+  padding: 0 22px 7px 22px;
+  text-align: left;
+  font: 600 8px var(--font-mono);
+  letter-spacing: .08em;
+  color: var(--text-faint);
+}
+.bills-table th.first { padding: 0 22px 7px 4px; }
+.bills-table th.amount { text-align: right; }
+.bills-table th.last { padding: 0 0 7px 22px; }
+.bills-table td {
+  height: 30px;
+  vertical-align: middle;
+  border-top: 1px solid var(--border);
+  line-height: 1;
+  white-space: nowrap;
+  padding: 0 22px;
+}
+.bills-table td.vendor { padding: 0 22px 0 4px; font-size: 11px; font-weight: 400; color: var(--text-primary); }
+.bills-table td.country { font-size: 10.5px; color: var(--text-muted); }
+.bills-table td.inv { font-size: 10.5px; color: var(--text-faint); }
+.bills-table td.amt { text-align: right; font-weight: 400; font-size: 11px; color: var(--text-primary); }
+.bills-table td.due { font-size: 10.5px; color: var(--text-muted); }
+.bills-table td.due.red { color: var(--danger); }
+.bills-table td.status { padding: 0 0 0 22px; }
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 8px;
+  color: #1A1A1A;
+  font: 500 9px var(--font-body);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.cursor { display: none; }
+</style>
+</head>
+<body>
+
+<div id="screen">
+  <div class="hero">
+
+    <!-- ── nav ─────────────────────────────────────────────────────────── -->
+    <div class="nav">
+      <div class="logo">Decimal<span>.</span></div>
+      <div class="nav-links">
+        <a href="#how-it-works">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <a class="btn btn-primary" href="#">Join the waitlist</a>
+      </div>
+    </div>
+
+    <!-- ── hero grid ───────────────────────────────────────────────────── -->
+    <div class="hero-grid">
+
+      <!-- left column -->
+      <div class="copy-col">
+        <h1>
+          <mark class="mk">
+            <svg viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M3.4 5.6 Q18 3.2 39 3.8 Q66 2.4 96.2 4.4 Q98.6 7.4 97.4 11 Q98.2 14.2 96 16.4 Q70 15.4 44 16.8 Q20 17.8 3 16 Q1.6 13 2.6 10.4 Q1.8 7.6 3.4 5.6 Z" fill="#F9C6D0"></path></svg>Self-driving</mark>
+          <br />Accounts Payable.
+        </h1>
+        <p class="sub">Get your vendor bills read, coded to your books, and paid on time, anywhere in the world. You just approve.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#">Join the waitlist</a>
+        </div>
+
+        <div class="cards">
+
+          <!-- chart card -->
+          <div class="chart">
+            <div class="legend">
+              <div class="legend-row">
+                <span class="legend-sw" style="background:#F9C6D0"></span>
+                <div class="legend-txt">
+                  <span class="legend-label">Cross-border</span>
+                  <div class="legend-val-row">
+                    <span class="mono legend-val">$961,000</span>
+                    <span class="legend-chip">+17%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="legend-row">
+                <span class="legend-sw" style="background:var(--ink)"></span>
+                <div class="legend-txt">
+                  <span class="legend-label">Domestic</span>
+                  <div class="legend-val-row">
+                    <span class="mono legend-val">$1,355,000</span>
+                    <span class="legend-chip">+7%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="chart-title">What you pay, month by month</div>
+            <div class="chart-plot">
+              <svg viewBox="0 0 210 330" preserveAspectRatio="none">
+                <path d="M2,304 L2,224.2 C8.9,222.3 29.5,217.4 43.2,212.5 C56.9,207.6 70.7,201.7 84.4,194.9 C98.1,188.2 111.9,178.7 125.6,172 C139.3,165.3 153.1,159.6 166.8,155 C180.5,150.4 201.1,146.2 208,144.4 L208,304 Z" fill="var(--ink)"></path>
+                <path d="M2,224.2 C8.9,222.3 29.5,217.4 43.2,212.5 C56.9,207.6 70.7,201.7 84.4,194.9 C98.1,188.2 111.9,178.7 125.6,172 C139.3,165.3 153.1,159.6 166.8,155 C180.5,150.4 201.1,146.2 208,144.4 L208,13.4 C201.1,18.4 180.5,32.1 166.8,43.3 C153.1,54.5 139.3,67.2 125.6,80.5 C111.9,93.8 98.1,110.7 84.4,123.1 C70.7,135.5 56.9,146.1 43.2,155 C29.5,163.9 8.9,172.8 2,176.3 Z" fill="#F9C6D0"></path>
+                <path d="M2,224.2 C8.9,222.3 29.5,217.4 43.2,212.5 C56.9,207.6 70.7,201.7 84.4,194.9 C98.1,188.2 111.9,178.7 125.6,172 C139.3,165.3 153.1,159.6 166.8,155 C180.5,150.4 201.1,146.2 208,144.4" fill="none" stroke="#FFFFFF" stroke-width="2"></path>
+                <path d="M2,176.3 C8.9,172.8 29.5,163.9 43.2,155 C56.9,146.1 70.7,135.5 84.4,123.1 C98.1,110.7 111.9,93.8 125.6,80.5 C139.3,67.2 153.1,54.5 166.8,43.3 C180.5,32.1 201.1,18.4 208,13.4" fill="none" stroke="#E58BA1" stroke-width="1.6"></path>
+                <line x1="166.8" y1="6" x2="166.8" y2="304" stroke="#FFFFFF" stroke-width="1" vector-effect="non-scaling-stroke"></line>
+                <circle cx="166.8" cy="43.3" r="3.6" fill="var(--bg-canvas)" stroke="var(--bg-canvas)" stroke-width="1.8"></circle>
+                <circle cx="166.8" cy="155" r="3.6" fill="var(--bg-canvas)" stroke="var(--bg-canvas)" stroke-width="1.8"></circle>
+                <text x="2" y="320" text-anchor="start" font-size="8.5" fill="var(--text-faint)" font-family="var(--font-mono)">Mar</text>
+                <text x="43.2" y="320" text-anchor="middle" font-size="8.5" fill="var(--text-faint)" font-family="var(--font-mono)">Apr</text>
+                <text x="84.4" y="320" text-anchor="middle" font-size="8.5" fill="var(--text-faint)" font-family="var(--font-mono)">May</text>
+                <text x="125.6" y="320" text-anchor="middle" font-size="8.5" fill="var(--text-faint)" font-family="var(--font-mono)">Jun</text>
+                <text x="166.8" y="320" text-anchor="middle" font-size="8.5" fill="var(--text-faint)" font-family="var(--font-mono)">Jul</text>
+                <text x="208" y="320" text-anchor="end" font-size="8.5" fill="var(--text-faint)" font-family="var(--font-mono)">Aug</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- slack card -->
+          <div class="slack">
+            <div class="slack-tags">
+              <div style="display:flex;gap:5px">
+                <span class="tag tag-slack">
+                  <svg width="9" height="9" viewBox="-4 -4 130.8 130.8" style="flex:none;overflow:visible">
+                    <path d="M25.8 77.6c0 7.1-5.8 12.9-12.9 12.9S0 84.7 0 77.6s5.8-12.9 12.9-12.9h12.9v12.9z" fill="#E01E5A"></path>
+                    <path d="M32.3 77.6c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.6z" fill="#E01E5A"></path>
+                    <path d="M45.2 25.8c-7.1 0-12.9-5.8-12.9-12.9S38.1 0 45.2 0s12.9 5.8 12.9 12.9v12.9H45.2z" fill="#36C5F0"></path>
+                    <path d="M45.2 32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H12.9C5.8 58.1 0 52.3 0 45.2s5.8-12.9 12.9-12.9h32.3z" fill="#36C5F0"></path>
+                    <path d="M97 45.2c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9-5.8 12.9-12.9 12.9H97V45.2z" fill="#2EB67D"></path>
+                    <path d="M90.5 45.2c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V12.9C64.7 5.8 70.5 0 77.6 0s12.9 5.8 12.9 12.9v32.3z" fill="#2EB67D"></path>
+                    <path d="M77.6 97c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9-12.9-5.8-12.9-12.9V97h12.9z" fill="#ECB22E"></path>
+                    <path d="M77.6 90.5c-7.1 0-12.9-5.8-12.9-12.9s5.8-12.9 12.9-12.9h32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H77.6z" fill="#ECB22E"></path>
+                  </svg>Slack
+                </span>
+              </div>
+              <div style="display:flex;gap:5px">
+                <span class="tag tag-active">Active</span>
+                <span class="tag tag-channel"># ap-approvals</span>
+              </div>
+            </div>
+
+            <div class="slack-card">
+              <div class="slack-head">
+                <img class="slack-avatar" src="demo-girl.jpg" alt="Lena" />
+                <div style="min-width:0;flex:1"><div class="slack-name">Lena Cortez</div></div>
+                <span class="slack-time">Aug 1, 9:37</span>
+              </div>
+              <div class="slack-msg">Hey @decimal, what's still open to pay this week? Pull up the bills with amounts and due dates so I can approve them in one go.</div>
+
+              <div style="margin-top:12px;display:flex;align-items:center;gap:7px">
+                <span class="d-badge">D</span>
+                <div style="min-width:0;flex:1;display:flex;align-items:center;gap:4px">
+                  <div style="font-size:8px;font-weight:400;color:var(--text-primary)">Decimal</div>
+                  <span class="app-chip">APP</span>
+                </div>
+                <span class="slack-time">Aug 1, 9:37</span>
+              </div>
+              <div class="slack-msg">Morning Lena, 4 bills are open this week, <b>$59,460</b> total. All four are coded to your books and passed checks, so they're ready to approve:</div>
+
+              <div class="slack-bills">
+                <div class="sb-row">
+                  <div class="sb-top"><span class="sb-vendor">Hanoi Textile Works</span><span class="mono sb-amount">$18,420</span></div>
+                  <div class="sb-sub">Fabric order INV-2214, due Tuesday.</div>
+                </div>
+                <div class="sb-row">
+                  <div class="sb-top"><span class="sb-vendor">Anvil Works</span><span class="mono sb-amount">$29,743</span></div>
+                  <div class="sb-sub">Office furniture INV-2481, due Tuesday.</div>
+                </div>
+                <div class="sb-row">
+                  <div class="sb-top"><span class="sb-vendor">Meridian Freight</span><span class="mono sb-amount">$6,497</span></div>
+                  <div class="sb-sub">July shipping INV-1187, due Friday.</div>
+                </div>
+                <div class="sb-row">
+                  <div class="sb-top"><span class="sb-vendor">Kestrel Studio</span><span class="mono sb-amount">$4,800</span></div>
+                  <div class="sb-sub">Design retainer INV-0331, due Thursday.</div>
+                </div>
+              </div>
+
+              <div class="slack-cta">
+                <span class="btn btn-primary">Approve all · $59,460</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- right column: the product screen -->
+      <div class="frame-wrap">
+        <div class="hatch"></div>
+        <div class="frame">
+
+          <div class="sidebar">
+            <span class="side-mark">D</span>
+            <span class="side-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.5"></rect><rect x="13" y="3" width="8" height="8" rx="1.5"></rect><rect x="13" y="13" width="8" height="8" rx="1.5"></rect><rect x="3" y="13" width="8" height="8" rx="1.5"></rect></svg></span>
+            <span class="side-icon is-active"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M6 2a1.6 1.6 0 0 0-1.6 1.6v16.8A1.6 1.6 0 0 0 6 22h12a1.6 1.6 0 0 0 1.6-1.6V8l-6-6H6zm2.5 10.2h7v1.8h-7v-1.8zm0 3.8h7v1.8h-7V16z"></path></svg></span>
+            <span class="side-icon gap"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5 21.5 8.2h-19L12 2.5zM4.2 9.6h3v8.2h-3V9.6zm6.3 0h3v8.2h-3V9.6zm6.3 0h3v8.2h-3V9.6zM3 19.2h18v2.6H3v-2.6z"></path></svg></span>
+            <span class="side-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M4 5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H4zm-2 4h20v3H2V9z"></path></svg></span>
+            <span class="side-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm7.5.4a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 20c0-3.3 3.1-5.4 7-5.4s7 2.1 7 5.4v1H2v-1zm16.1 1H22v-1c0-2.3-1.6-4-3.9-4.6.7 1 1.1 2.2 1.1 3.6v2z"></path></svg></span>
+            <span class="side-icon gap"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zm-1.2-5.8-4.2-4.2 1.7-1.7 2.5 2.5 5.9-5.9 1.7 1.7-7.6 7.6z"></path></svg></span>
+            <span class="side-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M14 3.2l6.8 4.8L14 12.8V10H8V6h6V3.2zM10 11.2 3.2 16l6.8 4.8V18h6v-4h-6v-2.8z"></path></svg></span>
+            <span class="side-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12 2 4 5.5V11c0 5 3.4 8.6 8 10.5 4.6-1.9 8-5.5 8-10.5V5.5L12 2zm-1.3 13.4-3.2-3.2 1.6-1.6 1.6 1.6 4.2-4.2 1.6 1.6-5.8 5.8z"></path></svg></span>
+            <span class="side-icon gap"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M6.5 2A2.5 2.5 0 0 0 4 4.5v15A2.5 2.5 0 0 0 6.5 22H20v-3.4H7.6v-1.8H20V2H6.5z"></path></svg></span>
+            <span class="side-icon push"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M10.2 2.2h3.6l.5 2.5 2.2 1 2.1-1.5 2.5 2.5-1.4 2.1.9 2.2 2.5.5v3.6l-2.5.5-.9 2.2 1.4 2.1-2.5 2.5-2.1-1.4-2.2.9-.5 2.5h-3.6l-.5-2.5-2.2-.9-2.1 1.4-2.5-2.5 1.4-2.1-.9-2.2-2.5-.5v-3.6l2.5-.5.9-2.2-1.4-2.1 2.5-2.5 2.1 1.5 2.2-1 .5-2.5zM12 15.4a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8z"></path></svg></span>
+            <img class="side-avatar" src="demo-girl.jpg" alt="profile" />
+          </div>
+
+          <div class="screen-col">
+            <div class="bills">
+
+              <div class="bills-head">
+                <div style="min-width:0">
+                  <h1>Bills</h1>
+                  <div class="sub">Every incoming bill, from inbox to paid. You review and approve; Decimal does the rest.</div>
+                </div>
+                <span class="btn btn-primary btn-sm">+ Upload a bill</span>
+              </div>
+
+              <div class="stats">
+                <div class="stat">
+                  <div class="stat-label">Waiting on you</div>
+                  <div class="stat-n">3</div>
+                  <div class="stat-sub">Needs your review today</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-label">In approval</div>
+                  <div class="stat-n">5</div>
+                  <div class="stat-sub">Moving through sign-off</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-label">To pay</div>
+                  <div class="stat-n">2</div>
+                  <div class="stat-sub">Approved, ready to send</div>
+                </div>
+              </div>
+
+              <div class="tabs-row">
+                <div class="tabs">
+                  <span class="tab is-active">All <span class="mono n">22</span></span>
+                  <span class="tab">Needs review <span class="mono n">3</span></span>
+                  <span class="tab">In approval <span class="mono n">5</span></span>
+                  <span class="tab">To pay <span class="mono n">2</span></span>
+                  <span class="tab">Done <span class="mono n">12</span></span>
+                </div>
+                <div class="tools">
+                  <div class="tool search">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <span>Search vendor or invoice</span>
+                  </div>
+                  <div class="tool sort">
+                    Sort: Due date
+                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-wrap">
+                <table class="bills-table">
+                  <thead>
+                    <tr>
+                      <th class="first">VENDOR</th>
+                      <th>COUNTRY</th>
+                      <th>INVOICE</th>
+                      <th class="amount">AMOUNT</th>
+                      <th>DUE</th>
+                      <th class="last">STATUS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td class="vendor">Anvil Works</td><td class="country">United States</td><td class="mono inv">INV-2481</td><td class="mono amt">$29,743</td><td class="mono due">Aug 12</td><td class="status"><span class="pill" style="background:#EFE9DD">Needs review</span></td></tr>
+                    <tr><td class="vendor">Hanoi Textile Works</td><td class="country">Vietnam</td><td class="mono inv">INV-2214</td><td class="mono amt">$18,420</td><td class="mono due">Aug 9</td><td class="status"><span class="pill" style="background:#DCE5EE">Waiting on Priya</span></td></tr>
+                    <tr><td class="vendor">Shenzhen Kiro Electronics</td><td class="country">China</td><td class="mono inv">8871</td><td class="mono amt">$33,750</td><td class="mono due red">Jul 30</td><td class="status"><span class="pill" style="background:#F6DAD5">Overdue · 2 days</span></td></tr>
+                    <tr><td class="vendor">Meridian Freight</td><td class="country">United Kingdom</td><td class="mono inv">INV-4021</td><td class="mono amt">$6,442</td><td class="mono due">Aug 5</td><td class="status"><span class="pill" style="background:#D9EAD9">Ready to pay</span></td></tr>
+                    <tr><td class="vendor">Lumen Cloud</td><td class="country">United States</td><td class="mono inv">LC-90455</td><td class="mono amt">$2,940</td><td class="mono due">Aug 8</td><td class="status"><span class="pill" style="background:#F4E6C6">In approval</span></td></tr>
+                    <tr><td class="vendor">Otavo Packaging</td><td class="country">Mexico</td><td class="mono inv">OT-118</td><td class="mono amt">$6,210</td><td class="mono due">Aug 14</td><td class="status"><span class="pill" style="background:#DCE5EE">Waiting on Rohan</span></td></tr>
+                    <tr><td class="vendor">Möbel Braun</td><td class="country">Germany</td><td class="mono inv">MB-2207</td><td class="mono amt">$12,900</td><td class="mono due">Aug 18</td><td class="status"><span class="pill" style="background:#EFE9DD">Needs review</span></td></tr>
+                    <tr><td class="vendor">Brightwave</td><td class="country">United States</td><td class="mono inv">BW-6</td><td class="mono amt">$4,518</td><td class="mono due">Jul 22</td><td class="status"><span class="pill" style="background:#E9E9E4">Paid Jul 24</span></td></tr>
+                    <tr><td class="vendor">Northwind</td><td class="country">United States</td><td class="mono inv">NW-3391</td><td class="mono amt">$8,120</td><td class="mono due">Aug 6</td><td class="status"><span class="pill" style="background:#F6DAD5">Possible duplicate</span></td></tr>
+                    <tr><td class="vendor">Nord Supply</td><td class="country">Netherlands</td><td class="mono inv">NS-77</td><td class="mono amt">$33,750</td><td class="mono due">Aug 20</td><td class="status"><span class="pill" style="background:#F4E6C6">In approval</span></td></tr>
+                    <tr><td class="vendor">Toolbox Supply</td><td class="country">United States</td><td class="mono inv">TS-88</td><td class="mono amt">$960</td><td class="mono due">Aug 3</td><td class="status"><span class="pill" style="background:#D9EAD9">Ready to pay</span></td></tr>
+                    <tr><td class="vendor">Copperline Mfg</td><td class="country">United States</td><td class="mono inv">CL-5567</td><td class="mono amt">$14,230</td><td class="mono due">Aug 22</td><td class="status"><span class="pill" style="background:#F4E6C6">In approval</span></td></tr>
+                    <tr><td class="vendor">Cedar Grove Supply</td><td class="country">United States</td><td class="mono inv">CG-4410</td><td class="mono amt">$5,230</td><td class="mono due">Aug 25</td><td class="status"><span class="pill" style="background:#EFE9DD">Needs review</span></td></tr>
+                    <tr><td class="vendor">Baltic Freight</td><td class="country">Estonia</td><td class="mono inv">BF-99</td><td class="mono amt">$9,840</td><td class="mono due">Aug 15</td><td class="status"><span class="pill" style="background:#F4E6C6">In approval</span></td></tr>
+                    <tr><td class="vendor">Aurora Labs</td><td class="country">United States</td><td class="mono inv">AL-771</td><td class="mono amt">$3,120</td><td class="mono due">Aug 11</td><td class="status"><span class="pill" style="background:#D9EAD9">Ready to pay</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+            <svg class="cursor" width="22" height="22" viewBox="0 0 24 24" fill="#5C1F33" stroke="#FFFFFF" stroke-width="1.1" stroke-linejoin="round"><path d="M5.5 3.2v13.6l3.4-3 2 4.6 2.6-1.1-2-4.6h4.6z"></path></svg>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

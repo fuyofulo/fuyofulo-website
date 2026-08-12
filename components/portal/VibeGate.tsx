@@ -11,7 +11,7 @@ type VibeGateProps = {
 };
 
 export function VibeGate({ defaultDismissed = false }: VibeGateProps) {
-  const { play, ready } = useMusicPlayer();
+  const { play } = useMusicPlayer();
   const [dismissed, setDismissed] = useState(defaultDismissed);
   const [timerDone, setTimerDone] = useState(defaultDismissed);
   const [primeAutoplay, setPrimeAutoplay] = useState(false);
@@ -50,16 +50,15 @@ export function VibeGate({ defaultDismissed = false }: VibeGateProps) {
     return cleanup;
   }, [defaultDismissed]);
 
-  // Fire play() once both the user gesture AND the YT player are ready.
-  // Either can land first.
+  // Fire play() on the first user gesture; the player queues the intent and
+  // starts once the lazily-loaded YouTube API is ready.
   useEffect(() => {
     if (!primeAutoplay) return;
-    if (!ready) return;
     play();
     setPrimeAutoplay(false);
-  }, [primeAutoplay, ready, play]);
+  }, [primeAutoplay, play]);
 
-  const canEnter = timerDone && ready;
+  const canEnter = timerDone;
 
   function handleEnter() {
     // session cookie — no Max-Age/Expires means it deletes when the browser
