@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, type ReactNode } from "react";
 
 /* The designs are authored as fixed frames sized to a desktop viewport. Scale
    the frame to fit the space it's given — up as well as down — so the
@@ -26,17 +26,10 @@ const BOX_VAR = "--fit-box-h";
 const MT_VAR = "--fit-mt";
 
 /* Runs inline, before paint. Kept terse because it ships as a string. */
-function preScale(
-  width: number,
-  height: number,
-  fold: number,
-  centered: boolean,
-  fluidBelow?: number,
-) {
+function preScale(width: number, height: number, fold: number, centered: boolean) {
   return `(function(){try{
 var e=document.currentScript.previousElementSibling;if(!e)return;
 var r=document.documentElement.style;
-${fluidBelow != null ? `if(innerWidth<${fluidBelow}){r.setProperty("${SCALE_VAR}",1);r.setProperty("${BOX_VAR}","auto");r.setProperty("${MT_VAR}","0px");return;}` : ""}
 var p=parseFloat(getComputedStyle(e).paddingTop)||0;
 var s=Math.min(innerWidth/${width},(innerHeight-p)/${fold});
 r.setProperty("${SCALE_VAR}",s);
@@ -54,10 +47,6 @@ export function FitFrame({
   width,
   height,
   className,
-  /* Below this width, stop scaling and let CSS reflow the contents instead —
-     scaling a 1440 frame onto a phone would render body copy at ~4px. Only for
-     layouts that actually have a fluid fallback; omit for fixed compositions. */
-  fluidBelow,
   /* For frames taller than one screen: the scale is chosen so this much of the
      frame fills the viewport on load, and the remainder is revealed by
      scrolling. Defaults to the full height (fits entirely, no scroll). */
@@ -72,13 +61,11 @@ export function FitFrame({
   width: number;
   height: number;
   className?: string;
-  fluidBelow?: number;
   foldHeight?: number;
   centered?: boolean;
   children: ReactNode;
 }) {
   const outerRef = useRef<HTMLDivElement>(null);
-  const [fluid, setFluid] = useState(false);
   const fold = foldHeight ?? height;
 
   useIsomorphicLayoutEffect(() => {
@@ -87,15 +74,6 @@ export function FitFrame({
     function fit() {
       const el = outerRef.current;
       if (!el) return;
-
-      if (fluidBelow != null && window.innerWidth < fluidBelow) {
-        setFluid(true);
-        root.setProperty(SCALE_VAR, "1");
-        root.setProperty(BOX_VAR, "auto");
-        root.setProperty(MT_VAR, "0px");
-        return;
-      }
-      setFluid(false);
 
       /* Any space reserved for the fixed navbar is this element's own
          padding-top, so the nav height never needs hardcoding here. */
@@ -125,7 +103,7 @@ export function FitFrame({
     fit();
     window.addEventListener("resize", fit);
     return () => window.removeEventListener("resize", fit);
-  }, [width, height, fold, fluidBelow, centered]);
+  }, [width, height, fold, centered]);
 
   return (
     <>
@@ -133,11 +111,8 @@ export function FitFrame({
         ref={outerRef}
         className={`fitframe-outer${className ? ` ${className}` : ""}`}
       >
-        {/* Dimensions as custom properties, not width/height directly, so the
-            .fitframe--fluid class can override them — an inline style would
-            always win. */}
         <div
-          className={`fitframe${fluid ? " fitframe--fluid" : ""}`}
+          className="fitframe"
           style={
             {
               "--fit-w": `${width}px`,
@@ -153,7 +128,7 @@ export function FitFrame({
           applied to read the reserved navbar padding. */}
       <script
         dangerouslySetInnerHTML={{
-          __html: preScale(width, height, fold, centered, fluidBelow),
+          __html: preScale(width, height, fold, centered),
         }}
       />
     </>

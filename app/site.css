@@ -1201,58 +1201,175 @@ a.hero14-bio-link:hover {
   }
 }
 
-/* ---- fluid fallback ----
-   Below 1024 the frame is abandoned rather than scaled (a 1440 frame on a phone
-   would render the 13.5px bio at ~4px) and the identity block reflows.
-   Mobile is not designed yet. */
+/* ============================================================
+   hero: desktop / mobile split (pure CSS, no hydration swap)
+   ============================================================ */
 
-/* Defined after .fitframe so it wins on width/height/transform. */
-.fitframe--fluid {
-  width: 100%;
-  height: auto;
-  margin-top: 0;
+.hero-mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hero-desktop-only {
+    display: none;
+  }
+  .hero-mobile-only {
+    display: block;
+  }
+}
+
+/* ============================================================
+   mobile hero (390x844 spec)
+   ============================================================ */
+
+.hero14m {
+  position: relative;
   min-height: 100vh;
-  transform: none;
+  min-height: 100svh;
+  background: var(--cream);
+  overflow: hidden;
+  padding: 0 16px 120px;
+}
+
+.hero14m-deco {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero14m-deco img {
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+}
+
+/* ---- identity ---- */
+
+.hero14m-identity {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 110px;
+}
+
+.hero14m-namerow {
+  display: inline-flex;
+  align-items: center;
+}
+
+.hero14m-name-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.hero14m-name {
+  position: relative;
+  display: block;
+  font-family: var(--font-pen);
+  font-weight: 400;
+  font-size: 58px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: #000000;
+  margin: 0;
+  -webkit-text-stroke: 1.2px #000000;
+}
+
+.hero14m-name--shadow {
+  position: absolute;
+  inset: 0;
+  color: #ffffff;
+  -webkit-text-stroke: 4px #ffffff;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.18));
+  user-select: none;
+  pointer-events: none;
+}
+
+.hero14m-smile {
+  width: 68px;
+  flex: 0 0 auto;
+  display: block;
+  margin-left: 10px;
+  transform: translate(-6px, -9px);
+}
+
+.hero14m-tag {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  margin-top: 10px;
+}
+
+.hero14m-bio {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 290px;
+  margin: 8px 0 0;
+}
+
+/* ---- sticker nav grid ---- */
+
+.hero14m-grid {
+  position: relative;
+  z-index: 1;
+  margin: 52px auto 0;
+  max-width: 360px;
+  padding: 0 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px 18px;
+}
+
+/* whole cell is the tap target (well past the 44px minimum) */
+.hero14m-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hero14m-iconbox {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  transition: transform 0.15s;
 }
 
-.fitframe--fluid .hero14-scene {
-  height: auto;
+.hero14m-iconbox img {
+  display: block;
+  max-width: none;
 }
 
-.fitframe--fluid .hero14-text {
+.hero14m-cell:active .hero14m-iconbox {
+  transform: translateY(-4px);
+}
+
+.hero14m-label {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+.hero14m-vinyl {
   position: relative;
-  inset: auto;
-  padding: 80px 24px;
+  display: block;
 }
 
-/* Inline mode offsets/sizes assume the 1440 frame; neutralize them when the
-   frame is gone. !important is deliberate — these fight inline styles. */
-.fitframe--fluid .hero14-namerow,
-.fitframe--fluid .hero14-bio {
-  transform: none !important;
-}
-
-.fitframe--fluid .hero14-name {
-  font-size: 60px !important;
-}
-
-.fitframe--fluid .hero14-smile {
-  width: 84px !important;
-}
-
-/* The fixed break assumes the 550px desktop measure; let the phone wrap
-   naturally. */
-.fitframe--fluid .hero14-bio-br {
-  display: none;
-}
-
-/* No frame edges to anchor against, so they'd land on the text block —
-   and the mode toggle is meaningless without them. */
-.fitframe--fluid .hero14-sticker,
-.fitframe--fluid .hero14-deco,
-.fitframe--fluid .hero14-toggle {
-  display: none;
+.hero14m-vinyl img {
+  width: 100%;
+  display: block;
 }

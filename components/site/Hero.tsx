@@ -408,3 +408,156 @@ export function Hero() {
     </div>
   );
 }
+
+/* ============================================================
+   Mobile hero (<=768px) — centered identity + labelled sticker
+   nav grid. Positions from the 390x844 mobile spec; corner deco
+   anchored per-corner so they hold at any width.
+   ============================================================ */
+
+const MOBILE_DECO = [
+  { src: "/stickers/spiderman.webp", alt: "spiderman sticker", pos: { left: 18, top: 22 }, w: 64, r: -8 },
+  { src: "/stickers/sun.webp", alt: "smiling sun sticker", pos: { right: 22, top: 18 }, w: 50, r: 10 },
+  { src: "/stickers/croissant.webp", alt: "croissant", pos: { left: 16, bottom: 39 }, w: 50, r: 6 },
+  { src: "/stickers/iced-coffee.webp", alt: "iced coffee cup", pos: { right: 16, bottom: 24 }, w: 44, r: -9 },
+] as const;
+
+type MobileNavCell = {
+  key: string;
+  label: string;
+  href?: string;
+  external?: boolean;
+  src: string;
+  alt: string;
+  w: number;
+  boxH: number;
+  r: number;
+  /** crt + pinboard render plain with a filter shadow, per the desktop scene */
+  shadow?: boolean;
+};
+
+const MOBILE_NAV: MobileNavCell[] = [
+  { key: "software", label: "software", href: "/engineering",
+    src: "/stickers/crt-tv.webp", alt: "retro CRT tv", w: 92, boxH: 96, r: 0, shadow: true },
+  { key: "reading", label: "reading", href: "/reading",
+    src: "/stickers/books-stack-baked.webp", alt: "stack of vintage books", w: 150, boxH: 104, r: -3 },
+  { key: "writing", label: "writing", href: "https://fuyofulo.substack.com", external: true,
+    src: "/stickers/typewriter-watercolor-baked.webp", alt: "vintage typewriter", w: 140, boxH: 104, r: 3 },
+  { key: "gallery", label: "gallery", href: "https://vsco.co/fuyofulo/gallery", external: true,
+    src: "/stickers/camera-baked.webp", alt: "vintage film camera", w: 124, boxH: 96, r: 6 },
+  { key: "wall-of-hope", label: "wall of hope", href: "/wall-of-hope",
+    src: "/stickers/pinboard-baked.webp", alt: "wall of hope pinboard", w: 112, boxH: 96, r: -2, shadow: true },
+];
+
+const MOBILE_VINYL = { w: 112, boxH: 96, r: 2 } as const;
+
+export function MobileHero() {
+  const { playing, toggle } = useMusicPlayer();
+
+  const cellIcon = (c: MobileNavCell) => (
+    <span className="hero14m-iconbox" style={{ height: c.boxH }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={c.src}
+        alt={c.alt}
+        style={{
+          width: c.w,
+          transform: c.r ? `rotate(${c.r}deg)` : undefined,
+          filter: c.shadow ? "drop-shadow(0 5px 12px rgba(0,0,0,.2))" : undefined,
+        }}
+      />
+    </span>
+  );
+
+  return (
+    <div className="hero14m">
+      {MOBILE_DECO.map((d) => (
+        <span key={d.src} className="hero14m-deco" style={{ ...d.pos }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={d.src}
+            alt={d.alt}
+            style={{ width: d.w, transform: `rotate(${d.r}deg)` }}
+          />
+        </span>
+      ))}
+
+      {/* ---- identity ---- */}
+      <div className="hero14m-identity">
+        <div className="hero14m-namerow">
+          <span className="hero14m-name-wrap">
+            <span aria-hidden="true" className="hero14m-name hero14m-name--shadow">
+              {heroContent.name}
+            </span>
+            <h1 className="hero14m-name">{heroContent.name}</h1>
+          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="hero14m-smile"
+            src="/stickers/fuyosmile-sticker.webp"
+            alt="fuyo smile"
+          />
+        </div>
+        <div className="hero14m-tag">{heroContent.role}</div>
+        <p className="hero14m-bio">
+          building{" "}
+          <a
+            className="hero14-bio-link"
+            href="https://decimal.finance"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            decimal
+          </a>{" "}
+          — teaching AI to pay the bills. everything else about me is scattered
+          around this page.
+        </p>
+      </div>
+
+      {/* ---- sticker nav grid ---- */}
+      <nav className="hero14m-grid">
+        {MOBILE_NAV.map((c) =>
+          c.external ? (
+            <a
+              key={c.key}
+              className="hero14m-cell"
+              href={c.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {cellIcon(c)}
+              <span className="hero14m-label">{c.label}</span>
+            </a>
+          ) : (
+            <Link key={c.key} className="hero14m-cell" href={c.href!}>
+              {cellIcon(c)}
+              <span className="hero14m-label">{c.label}</span>
+            </Link>
+          ),
+        )}
+
+        <button
+          type="button"
+          className="hero14m-cell"
+          onClick={toggle}
+          aria-label={playing ? "pause music" : "play music"}
+        >
+          <span className="hero14m-iconbox" style={{ height: MOBILE_VINYL.boxH }}>
+            <span
+              className="hero14m-vinyl"
+              style={{ width: MOBILE_VINYL.w, transform: `rotate(${MOBILE_VINYL.r}deg)` }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/stickers/vinyl-player-baked.webp" alt="pink vinyl turntable" />
+              {/* padded-file record geometry, same as the navbar thumbnail */}
+              {playing ? (
+                <VinylSheen left="16.9%" top="22.4%" width="56.1%" blur={3} />
+              ) : null}
+            </span>
+          </span>
+          <span className="hero14m-label">music</span>
+        </button>
+      </nav>
+    </div>
+  );
+}
