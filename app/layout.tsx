@@ -45,10 +45,28 @@ const fearless = localFont({
   variable: "--font-fearless",
 });
 
+const DESCRIPTION =
+  "personal site of fuyofulo — 23, engineer, building decimal. everything else about me is scattered around this page.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://fuyofulo.com"),
   title: "fuyofulo",
-  description:
-    "personal site of fuyofulo — 23, engineer, building decimal. everything else about me is scattered around this page.",
+  description: DESCRIPTION,
+  openGraph: {
+    title: "fuyofulo",
+    description: DESCRIPTION,
+    url: "https://fuyofulo.com",
+    siteName: "fuyofulo",
+    type: "website",
+    /* the chaos-mode hero, cropped to card proportions */
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "fuyofulo — sticker hero" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "fuyofulo",
+    description: DESCRIPTION,
+    images: ["/og.jpg"],
+  },
 };
 
 export default function RootLayout({
