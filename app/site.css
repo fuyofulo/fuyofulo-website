@@ -4,31 +4,6 @@
    Legacy retro styles live in globals.css, scoped to .portal.
    ============================================================ */
 
-@font-face {
-  font-family: "Game Paused";
-  src: url("/fonts/gamepaused-regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Fearlessly Authentic";
-  src: url("/fonts/fearlessly-authentic-italic.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Fearlessly Authentic";
-  src: url("/fonts/fearlessly-authentic-fearlessly-authentic-regular.woff2")
-    format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 .site {
   /* section backgrounds */
   --cream: #fffaf5;
@@ -52,9 +27,8 @@
 
   --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono",
     Menlo, Consolas, monospace;
-  /* --font-pen and --font-serif are set on <html> by next/font (self-hosted). */
-  --font-game: "Game Paused", monospace;
-  --font-fearless: "Fearlessly Authentic", serif;
+  /* All display fonts (--font-pen, --font-serif, --font-game, --font-fearless)
+     are set on <html> by next/font — self-hosted, preloaded, no fallback flash. */
 
   /* layout: design is authored at 1440 with 72px side + 29px inner gutters */
   --gutter: 101px;
