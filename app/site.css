@@ -52,8 +52,7 @@
 
   --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono",
     Menlo, Consolas, monospace;
-  --font-pen: "Nanum Pen Script", cursive;
-  --font-serif: "Instrument Serif", serif;
+  /* --font-pen and --font-serif are set on <html> by next/font (self-hosted). */
   --font-game: "Game Paused", monospace;
   --font-fearless: "Fearlessly Authentic", serif;
 
@@ -95,16 +94,6 @@
    motion
    ============================================================ */
 
-@keyframes floaty {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
 @keyframes spinrec {
   from {
     transform: rotate(0deg);
@@ -114,15 +103,7 @@
   }
 }
 
-/* The float lives on an inner wrapper so it composes with the placement
-   rotation on the parent rather than overwriting it. */
-.floaty {
-  animation: floaty var(--float-dur, 8s) ease-in-out var(--float-delay, 0s)
-    infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .floaty,
   .vinyl-sheen {
     animation: none !important;
   }

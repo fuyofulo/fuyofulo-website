@@ -1,8 +1,28 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Instrument_Serif, Nanum_Pen_Script } from "next/font/google";
 import { MusicPlayerProvider } from "../components/portal/MusicPlayer";
 import "./globals.css";
 import "./site.css";
+
+/* Self-hosted at build time via next/font: the woff2 is preloaded from our own
+   origin, so the name never flashes a fallback font the way the runtime Google
+   Fonts <link> did. display:block on the pen font — for a display face this
+   distinctive, a beat of invisible text beats a beat of the wrong font. */
+const pen = Nanum_Pen_Script({
+  weight: "400",
+  subsets: ["latin"],
+  display: "block",
+  variable: "--font-pen",
+});
+
+const serif = Instrument_Serif({
+  weight: "400",
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-serif",
+});
 
 export const metadata: Metadata = {
   title: "fuyofulo",
@@ -20,19 +40,11 @@ export default function RootLayout({
      intentionally differs from the server markup. It applies to this element's
      attributes only — children still get normal hydration checking. */
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Nanum+Pen+Script&display=swap"
-        />
-      </head>
+    <html
+      lang="en"
+      className={`${pen.variable} ${serif.variable}`}
+      suppressHydrationWarning
+    >
       <body>
         {/* Shared by the hero turntable and the scroll navbar. */}
         <MusicPlayerProvider>{children}</MusicPlayerProvider>
