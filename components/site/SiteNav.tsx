@@ -11,6 +11,8 @@ const VARIANTS = {
   espresso: { className: "nav-espresso", mascot: "/stickers/fuyosmile-pink.webp" },
   navy: { className: "nav-navy", mascot: "/stickers/fuyosmile-green.webp" },
   paper: { className: "nav-paper", mascot: "/stickers/fuyosmile-sticker.webp" },
+  /* blackberry cordial — wall of hope */
+  cordial: { className: "nav-cordial", mascot: "/stickers/fuyosmile-pink.webp" },
 } as const;
 
 export type NavVariant = keyof typeof VARIANTS;
@@ -25,7 +27,18 @@ const LINKS = [
   { label: "writing", href: "https://fuyofulo.substack.com", external: true },
 ];
 
-export function SiteNav({ variant }: { variant: NavVariant }) {
+export function SiteNav({
+  variant,
+  /* label of the link for the page we're on — rendered underlined */
+  active,
+  /* "vinyl" = spinning turntable thumbnail; "icon" = Lucide music note that
+     dims when paused (wall of hope) */
+  musicStyle = "vinyl",
+}: {
+  variant: NavVariant;
+  active?: string;
+  musicStyle?: "vinyl" | "icon";
+}) {
   const { playing, toggle } = useMusicPlayer();
   const { className, mascot } = VARIANTS[variant];
 
@@ -39,10 +52,12 @@ export function SiteNav({ variant }: { variant: NavVariant }) {
       </Link>
 
       <div className="scrollnav-links">
-        {LINKS.map((link) =>
-          link.external ? (
+        {LINKS.map((link) => {
+          const cls = link.label === active ? "is-active" : undefined;
+          return link.external ? (
             <a
               key={link.label}
+              className={cls}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
@@ -50,11 +65,11 @@ export function SiteNav({ variant }: { variant: NavVariant }) {
               {link.label}
             </a>
           ) : (
-            <Link key={link.label} href={link.href}>
+            <Link key={link.label} className={cls} href={link.href}>
               {link.label}
             </Link>
-          ),
-        )}
+          );
+        })}
       </div>
 
       <button
@@ -65,13 +80,33 @@ export function SiteNav({ variant }: { variant: NavVariant }) {
         aria-label={playing ? "pause music" : "play music"}
       >
         <span className="scrollnav-music-label">{playing ? "playing" : "paused"}</span>
-        <span className="scrollnav-vinyl">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/stickers/vinyl-player-baked.webp" alt="" aria-hidden="true" />
-          {playing ? (
-            <VinylSheen left="16.9%" top="22.4%" width="56.1%" blur={2} />
-          ) : null}
-        </span>
+        {musicStyle === "icon" ? (
+          /* Lucide "music" (ISC) */
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="scrollnav-music-icon"
+            style={{ opacity: playing ? 1 : 0.45 }}
+          >
+            <path d="M9 18V5l12-2v13" />
+            <circle cx="6" cy="18" r="3" />
+            <circle cx="18" cy="16" r="3" />
+          </svg>
+        ) : (
+          <span className="scrollnav-vinyl">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/stickers/vinyl-player-baked.webp" alt="" aria-hidden="true" />
+            {playing ? (
+              <VinylSheen left="16.9%" top="22.4%" width="56.1%" blur={2} />
+            ) : null}
+          </span>
+        )}
       </button>
     </nav>
   );

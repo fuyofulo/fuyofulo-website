@@ -1369,3 +1369,119 @@ a.hero14-bio-link:hover {
   width: 100%;
   display: block;
 }
+
+/* ============================================================
+   wall of hope — blackberry cordial
+   ============================================================ */
+
+.nav-cordial {
+  --nav-bg: #3f2a47;
+  --nav-border: rgba(240, 234, 218, 0.2);
+  --nav-link: #f0eada;
+  --nav-label: #f0eada;
+}
+
+.scrollnav-links .is-active {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* the icon inherits the variant's label color */
+.scrollnav-music-icon {
+  color: var(--nav-label);
+  transition: opacity 0.2s;
+}
+
+.wall-page {
+  min-height: 100vh;
+  background: #3f2a47;
+  padding-top: var(--nav-h);
+}
+
+.wall-container {
+  padding: 44px 48px 64px;
+}
+
+.wall-titlerow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.wall-title-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.wall-title {
+  position: relative;
+  display: block;
+  font-family: var(--font-pen);
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1;
+  color: #f0eada;
+  margin: 0;
+  -webkit-text-stroke: 1.2px #f0eada;
+}
+
+.wall-title--outline {
+  position: absolute;
+  inset: 0;
+  color: #2b1b32;
+  -webkit-text-stroke: 4px #2b1b32;
+  user-select: none;
+  pointer-events: none;
+}
+
+.wall-sun {
+  width: 58px;
+  display: block;
+  transform: rotate(10deg) translateY(-6px);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+.wall-subtitle {
+  font: 400 13px/1.7 var(--font-mono);
+  color: rgba(240, 234, 218, 0.7);
+  margin: 8px 0 0;
+}
+
+/* four equal columns spanning the full container; start-aligned so
+   different aspect ratios top-align within a row */
+.wall-wall {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  align-items: start;
+  margin-top: 36px;
+}
+
+.wall-mat {
+  margin: 0;
+  background: #f0eada;
+  padding: 10px;
+  border: 1px solid rgba(240, 234, 218, 0.25);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.35);
+}
+
+.wall-mat img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .wall-wall {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .wall-container {
+    padding: 32px 20px 48px;
+  }
+  .wall-wall {
+    grid-template-columns: 1fr;
+  }
+}
