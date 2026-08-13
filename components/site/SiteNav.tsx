@@ -11,7 +11,7 @@ const VARIANTS = {
   navy: { className: "nav-navy", mascot: "/stickers/fuyosmile-green.webp" },
   paper: { className: "nav-paper", mascot: "/stickers/fuyosmile-sticker.webp" },
   /* blackberry cordial — wall of hope */
-  cordial: { className: "nav-cordial", mascot: "/stickers/fuyosmile-manila.webp" },
+  cordial: { className: "nav-cordial", mascot: "/stickers/fuyosmile-vanilla.webp" },
 } as const;
 
 export type NavVariant = keyof typeof VARIANTS;
