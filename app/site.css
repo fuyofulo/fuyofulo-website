@@ -1417,8 +1417,8 @@ a.hero14-bio-link:hover {
 .wall-title--outline {
   position: absolute;
   inset: 0;
-  color: #2b1b32;
-  -webkit-text-stroke: 4px #2b1b32;
+  color: #000000;
+  -webkit-text-stroke: 4px #000000;
   user-select: none;
   pointer-events: none;
 }
