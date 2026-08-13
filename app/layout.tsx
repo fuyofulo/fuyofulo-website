@@ -52,6 +52,9 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://fuyofulo.com"),
   title: "fuyofulo",
   description: DESCRIPTION,
+  /* Dark Reader honors this and leaves the page alone — the palette here is
+     hand-picked per page; force-darkening it produces grey mush. */
+  other: { "darkreader-lock": "true" },
   openGraph: {
     title: "fuyofulo",
     description: DESCRIPTION,
