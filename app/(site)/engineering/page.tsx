@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function EngineeringPage() {
   return (
     <>
-      <SiteNav variant="navy" />
+      <SiteNav variant="navy" active="engineering" />
       <FitFrame
         width={1440}
         height={1516}

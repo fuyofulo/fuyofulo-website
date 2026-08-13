@@ -349,17 +349,6 @@ a.hero14-bio-link:hover {
   color: var(--nav-label);
 }
 
-.scrollnav-vinyl {
-  position: relative;
-  width: 38px;
-  flex: 0 0 auto;
-}
-
-.scrollnav-vinyl img {
-  width: 100%;
-  display: block;
-}
-
 /* palette variants */
 .nav-cream {
   --nav-bg: #fffaf5;

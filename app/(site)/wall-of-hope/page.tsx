@@ -19,7 +19,7 @@ const PICTURES = [
 export default function WallOfHopePage() {
   return (
     <>
-      <SiteNav variant="cordial" active="wall of hope" musicStyle="icon" />
+      <SiteNav variant="cordial" active="wall of hope" />
       <main className="wall-page">
         <div className="wall-container">
           <div className="wall-titlerow">

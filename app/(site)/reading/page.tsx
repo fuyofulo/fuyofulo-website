@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function ReadingPage() {
   return (
     <>
-      <SiteNav variant="espresso" />
+      <SiteNav variant="espresso" active="reading" />
       <FitFrame
         width={1440}
         height={736}
