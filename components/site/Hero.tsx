@@ -84,7 +84,7 @@ const NAV_STICKERS: NavSticker[] = [
   {
     key: "crt",
     href: "/engineering",
-    title: "software",
+    title: "engineering",
     src: "/stickers/crt-tv.webp",
     alt: "retro CRT tv",
     z: 9,
@@ -437,7 +437,7 @@ type MobileNavCell = {
 };
 
 const MOBILE_NAV: MobileNavCell[] = [
-  { key: "software", label: "software", href: "/engineering",
+  { key: "engineering", label: "engineering", href: "/engineering",
     src: "/stickers/crt-tv.webp", alt: "retro CRT tv", w: 92, boxH: 96, r: 0, shadow: true },
   { key: "reading", label: "reading", href: "/reading",
     src: "/stickers/books-stack-baked.webp", alt: "stack of vintage books", w: 150, boxH: 104, r: -3 },
