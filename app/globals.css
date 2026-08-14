@@ -1035,16 +1035,6 @@ h4 {
   text-decoration: line-through;
 }
 
-/* hidden YouTube IFrame host */
-.yt-host {
-  position: fixed;
-  left: -9999px;
-  top: -9999px;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
-  pointer-events: none;
-}
 
 /* VibeGate splash modal */
 .vibe-gate {

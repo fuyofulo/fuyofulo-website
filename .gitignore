@@ -31,3 +31,6 @@ claude-design-handoff.zip
 CONTENT.md
 content-row-check*.png
 viewport-fit-pass*.png
+
+# original stays local; the served 128k transcode lives in public/audio
+One Way - Cutie Pie (Instrumental).mp3
