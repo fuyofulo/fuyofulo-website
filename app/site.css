@@ -1576,55 +1576,68 @@ a.hero14-bio-link:hover {
   margin-top: 48px;
 }
 
-.sugg-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 26px;
+/* borderless table — hairlines between rows only */
+.sugg-table {
   margin-top: 36px;
-  align-items: start;
+  max-width: 1100px;
 }
 
-.sugg-note {
-  position: relative;
-  background: var(--pink);
-  padding: 20px 20px 16px;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4);
+.sugg-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 2fr minmax(90px, auto) auto;
+  gap: 24px;
+  align-items: baseline;
+  padding: 14px 2px;
+  border-bottom: 1px dashed rgba(247, 238, 225, 0.18);
 }
 
-/* hand-placed feel: alternate tiny tilts */
-.sugg-note:nth-child(3n) {
-  transform: rotate(0.8deg);
-}
-
-.sugg-note:nth-child(3n + 1) {
-  transform: rotate(-0.8deg);
-}
-
-.sugg-note-body {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.sugg-row:first-child {
+  border-top: 1px dashed rgba(247, 238, 225, 0.18);
 }
 
 .sugg-book {
-  font-family: var(--font-pen);
-  font-size: 26px;
-  line-height: 1.1;
-  color: #2a1219;
+  font: 600 13.5px/1.5 var(--font-mono);
+  color: var(--pink);
   overflow-wrap: anywhere;
 }
 
 .sugg-why {
-  font: 400 12px/1.7 var(--font-mono);
-  color: rgba(42, 18, 25, 0.75);
+  font: 400 12.5px/1.7 var(--font-mono);
+  color: rgba(247, 238, 225, 0.65);
   overflow-wrap: anywhere;
 }
 
-.sugg-meta {
-  font: 500 11px var(--font-mono);
-  color: rgba(42, 18, 25, 0.55);
-  margin-top: 4px;
+.sugg-who {
+  font: 500 12px var(--font-mono);
+  color: var(--tan);
+  overflow-wrap: anywhere;
+}
+
+.sugg-when {
+  font: 400 11px var(--font-mono);
+  color: rgba(247, 238, 225, 0.45);
+  white-space: nowrap;
+  justify-self: end;
+}
+
+@media (max-width: 700px) {
+  .sugg-row {
+    grid-template-columns: 1fr auto;
+    gap: 4px 16px;
+  }
+  .sugg-book {
+    grid-column: 1;
+  }
+  .sugg-when {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .sugg-why {
+    grid-column: 1 / -1;
+  }
+  .sugg-who {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 600px) {

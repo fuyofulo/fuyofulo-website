@@ -43,36 +43,18 @@ export default async function SuggestionsPage() {
               nothing here yet — be the first to scribble one down.
             </p>
           ) : (
-            <div className="sugg-grid">
+            <div className="sugg-table">
               {suggestions.map((s) => (
-                <div key={s.id} className="sugg-note">
-                  <div className="grain" style={{ opacity: 0.35 }} />
-                  <div className="sugg-note-body">
-                    <div className="sugg-book">{s.book}</div>
-                    {s.why ? <div className="sugg-why">{s.why}</div> : null}
-                    <div className="sugg-meta">
-                      — {s.name} · {when(s.at)}
-                    </div>
-                  </div>
+                <div key={s.id} className="sugg-row">
+                  <span className="sugg-book">{s.book}</span>
+                  <span className="sugg-why">{s.why}</span>
+                  <span className="sugg-who">{s.name}</span>
+                  <span className="sugg-when">{when(s.at)}</span>
                 </div>
               ))}
             </div>
           )}
         </div>
-        {/* the grain filter the notes reference */}
-        <svg
-          style={{ position: "absolute", width: 0, height: 0, visibility: "hidden" }}
-          aria-hidden="true"
-        >
-          <defs>
-            <filter id="paper-grain" x="0%" y="0%" width="100%" height="100%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="8" result="noise" />
-              <feDiffuseLighting in="noise" lightingColor="white" surfaceScale="1" result="diffLight">
-                <feDistantLight azimuth="45" elevation="35" />
-              </feDiffuseLighting>
-            </filter>
-          </defs>
-        </svg>
       </main>
     </>
   );
