@@ -1576,18 +1576,17 @@ a.hero14-bio-link:hover {
   margin-top: 48px;
 }
 
-/* borderless table — hairlines between rows only */
+/* borderless table — hairlines between rows only; slim rows, full width */
 .sugg-table {
   margin-top: 36px;
-  max-width: 1100px;
 }
 
 .sugg-row {
   display: grid;
-  grid-template-columns: minmax(180px, 1fr) 2fr minmax(90px, auto) auto;
+  grid-template-columns: minmax(180px, 1fr) 2.4fr minmax(90px, auto) auto;
   gap: 24px;
   align-items: baseline;
-  padding: 14px 2px;
+  padding: 8px 2px;
   border-bottom: 1px dashed rgba(247, 238, 225, 0.18);
 }
 
