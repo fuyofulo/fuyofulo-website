@@ -34,3 +34,5 @@ viewport-fit-pass*.png
 
 # original stays local; the served 128k transcode lives in public/audio
 One Way - Cutie Pie (Instrumental).mp3
+.vercel
+.env*.local

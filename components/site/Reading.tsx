@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { useEffect, useRef, useState, useTransition } from "react";
+import { submitSuggestion } from "../../app/(site)/reading/actions";
 import { shelf } from "../../lib/site-content";
 
 const N = shelf.length;
@@ -206,34 +208,65 @@ export function Reading() {
   );
 }
 
-/* TODO: needs a real endpoint (server action + store, or an email relay).
-   Until then this only acknowledges locally — nothing is sent anywhere. */
+/* Submits to the Upstash-backed server action; suggestions show publicly
+   at /reading/suggestions. */
 function SuggestNote() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<
+    "idle" | "sent" | "invalid" | "rate" | "error"
+  >("idle");
+  const [pending, startTransition] = useTransition();
+
+  const HELP: Record<typeof status, string> = {
+    idle: "read something i should read too? scribble it down.",
+    sent: "noted — thank you :)",
+    invalid: "at least your name and the book, please!",
+    rate: "easy! try again in a bit.",
+    error: "hmm, that didn't send — try again?",
+  };
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    startTransition(async () => {
+      const result = await submitSuggestion(data);
+      if (result.ok) {
+        setStatus("sent");
+        form.reset();
+      } else {
+        setStatus(result.reason === "unavailable" ? "error" : result.reason);
+      }
+    });
+  }
 
   return (
-    <form
-      className="sticky-note"
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSent(true);
-      }}
-    >
+    <form className="sticky-note" onSubmit={handleSubmit}>
       <div className="grain" style={{ opacity: 0.4 }} />
       <div className="sticky-note-tape" aria-hidden="true" />
       <div className="sticky-note-body">
         <div className="sticky-note-title">suggest me a book!</div>
         <div className="sticky-note-help">
-          {sent
-            ? "noted — thank you :)"
-            : "read something i should read too? scribble it down."}
+          {pending ? "sending…" : HELP[status]}
         </div>
-        <input name="name" placeholder="your name" aria-label="your name" />
-        <input name="book" placeholder="book title" aria-label="book title" />
-        <input name="why" placeholder="why?" aria-label="why?" />
-        <button type="submit" className="sticky-note-send">
-          send it →
-        </button>
+        <input name="name" placeholder="your name" aria-label="your name" maxLength={40} />
+        <input name="book" placeholder="book title" aria-label="book title" maxLength={80} />
+        <input name="why" placeholder="why?" aria-label="why?" maxLength={240} />
+        {/* honeypot — invisible to people, irresistible to bots */}
+        <input
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="sticky-note-hp"
+        />
+        <div className="sticky-note-bottom">
+          <Link href="/reading/suggestions" className="sticky-note-peek">
+            see suggestions
+          </Link>
+          <button type="submit" className="sticky-note-send" disabled={pending}>
+            send it →
+          </button>
+        </div>
       </div>
     </form>
   );
