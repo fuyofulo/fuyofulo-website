@@ -66,9 +66,12 @@ export function useMusicPlayer(): MusicPlayerCtx {
   return ctx;
 }
 
-/* The YouTube embed is ~1.3MB of script + iframe. Nothing loads until the
-   first play() call — visitors who never touch the vinyl pay nothing. play()
-   before the player exists queues the intent; onReady flushes it. */
+/* The YouTube embed is ~1.3MB of script + iframe, so it must not compete with
+   the hero's images and fonts — but a fully lazy player made the first vinyl
+   click take seconds on a cold cache. Middle path: the player warms up in the
+   background once the page has finished loading, so the first click is
+   effectively instant. A click that beats the warm-up queues the intent and
+   onReady flushes it. */
 export function MusicPlayerProvider({ children }: { children: ReactNode }) {
   const hostRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<YTPlayer | null>(null);
@@ -161,6 +164,38 @@ export function MusicPlayerProvider({ children }: { children: ReactNode }) {
       }
     }
   }, []);
+
+
+  /* Warm-up: init once the page settles (load event, then idle). ensureInit
+     is idempotent, so racing an early click is harmless. */
+  useEffect(() => {
+    let idleHandle: number | undefined;
+    let timerHandle: ReturnType<typeof setTimeout> | undefined;
+
+    const scheduleIdle = () => {
+      if ("requestIdleCallback" in window) {
+        idleHandle = window.requestIdleCallback(() => ensureInit(), {
+          timeout: 4000,
+        });
+      } else {
+        timerHandle = setTimeout(ensureInit, 1200);
+      }
+    };
+
+    if (document.readyState === "complete") {
+      scheduleIdle();
+    } else {
+      window.addEventListener("load", scheduleIdle, { once: true });
+    }
+
+    return () => {
+      window.removeEventListener("load", scheduleIdle);
+      if (idleHandle !== undefined && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleHandle);
+      }
+      if (timerHandle !== undefined) clearTimeout(timerHandle);
+    };
+  }, [ensureInit]);
 
   const play = useCallback(() => {
     if (playerRef.current && ready) {
