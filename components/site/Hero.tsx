@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { heroContent } from "../../lib/site-content";
-import { useMusicPlayer } from "../portal/MusicPlayer";
+import { useMusicPlayer } from "./MusicPlayer";
 import { VinylSheen } from "./VinylSheen";
 
 /* Hero "14a" — a 1440x800 canvas of hand-placed stickers with two layouts:

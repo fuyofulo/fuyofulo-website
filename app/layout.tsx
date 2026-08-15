@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Instrument_Serif, Nanum_Pen_Script } from "next/font/google";
 import localFont from "next/font/local";
-import { MusicPlayerProvider } from "../components/portal/MusicPlayer";
+import { MusicPlayerProvider } from "../components/site/MusicPlayer";
 import "./globals.css";
 import "./site.css";
 
@@ -25,24 +25,12 @@ const serif = Instrument_Serif({
   variable: "--font-serif",
 });
 
-/* Display faces for /engineering and /writing — block, not swap, for the same
-   reason as the pen font: never paint the imposter fallback. */
+/* Display face for /engineering — block, not swap, for the same reason as the
+   pen font: never paint the imposter fallback. */
 const game = localFont({
   src: "./fonts/gamepaused-regular.woff2",
   display: "block",
   variable: "--font-game",
-});
-
-const fearless = localFont({
-  src: [
-    {
-      path: "./fonts/fearlessly-authentic-fearlessly-authentic-regular.woff2",
-      style: "normal",
-    },
-    { path: "./fonts/fearlessly-authentic-italic.woff2", style: "italic" },
-  ],
-  display: "block",
-  variable: "--font-fearless",
 });
 
 const DESCRIPTION =
@@ -84,7 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${pen.variable} ${serif.variable} ${game.variable} ${fearless.variable}`}
+      className={`${pen.variable} ${serif.variable} ${game.variable}`}
       suppressHydrationWarning
     >
       <body>

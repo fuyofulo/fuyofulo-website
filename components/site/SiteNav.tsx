@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMusicPlayer } from "../portal/MusicPlayer";
+import { useMusicPlayer } from "./MusicPlayer";
 
 /* Palette per section, matching frames 9a/9b/9c in the handoff. Each page
    declares its own variant now that the sections are separate routes. */
@@ -9,7 +9,6 @@ const VARIANTS = {
   cream: { className: "nav-cream", mascot: "/stickers/fuyosmile-sticker.webp" },
   espresso: { className: "nav-espresso", mascot: "/stickers/fuyosmile-pink.webp" },
   navy: { className: "nav-navy", mascot: "/stickers/fuyosmile-green.webp" },
-  paper: { className: "nav-paper", mascot: "/stickers/fuyosmile-sticker.webp" },
   /* blackberry cordial — wall of hope */
   cordial: { className: "nav-cordial", mascot: "/stickers/fuyosmile-vanilla.webp" },
 } as const;

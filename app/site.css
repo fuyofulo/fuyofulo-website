@@ -9,7 +9,6 @@
   --cream: #fffaf5;
   --espresso: #241710;
   --navy: #282b4a;
-  --paper: #f4f0dd;
 
   /* accents */
   --berry: #8b2a4a;
@@ -17,10 +16,6 @@
   --tan: #dca96e;
   --pale-green: #ccffbc;
   --bone: #eeebda;
-  --purple: #a88aed;
-  --olive: #a6c261;
-  --yellow: #f5d76e;
-  --ink: #1a1a1a;
 
   --text-primary: #2a1219;
   --text-muted: #6b5560;
@@ -30,8 +25,6 @@
   /* All display fonts (--font-pen, --font-serif, --font-game, --font-fearless)
      are set on <html> by next/font — self-hosted, preloaded, no fallback flash. */
 
-  /* layout: design is authored at 1440 with 72px side + 29px inner gutters */
-  --gutter: 101px;
   /* Thinner than the design's 64px. The hairline is an inset shadow rather than
      a border so it sits outside the box and the space above and below the nav
      content stays exactly equal. */
@@ -42,16 +35,6 @@
   -webkit-font-smoothing: antialiased;
   background: var(--cream);
   min-height: 100vh;
-}
-
-/* Each section is its own route now. Clear the fixed 64px navbar and let the
-   section's own background fill the viewport rather than leaving cream below. */
-.page {
-  padding-top: var(--nav-h);
-}
-
-.page > .section {
-  min-height: calc(100vh - var(--nav-h));
 }
 
 .site a {
@@ -84,26 +67,6 @@
   .site * {
     transition-duration: 0.01ms !important;
   }
-}
-
-/* ============================================================
-   section frame
-   ============================================================ */
-
-.section {
-  position: relative;
-  padding: 56px 72px;
-  overflow: hidden;
-}
-
-.section-inner {
-  padding: 0 29px;
-}
-
-.section-lede {
-  margin: 0;
-  font: 400 15px/1.7 var(--font-mono);
-  max-width: 760px;
 }
 
 /* ============================================================
@@ -369,13 +332,6 @@ a.hero14-bio-link:hover {
   --nav-border: rgba(238, 235, 218, 0.15);
   --nav-link: #eeebda;
   --nav-label: #ccffbc;
-}
-
-.nav-paper {
-  --nav-bg: #f4f0dd;
-  --nav-border: rgba(26, 26, 26, 0.15);
-  --nav-link: #1a1a1a;
-  --nav-label: #8b2a4a;
 }
 
 /* vinyl sheen — the spinning record highlight */
@@ -1095,79 +1051,13 @@ a.hero14-bio-link:hover {
   margin-right: 8px;
 }
 /* ============================================================
-   writing (paper)
-   ============================================================ */
-
-.writing {
-  background: var(--paper);
-}
-
-.writing-title {
-  font-family: var(--font-fearless);
-  font-style: italic;
-  font-size: 76px;
-  line-height: 1;
-  color: var(--purple);
-  margin: 10px 0 0;
-}
-
-.writing-lede {
-  color: #5e5b57;
-  margin-top: 6px;
-}
-
-.writing-buttons {
-  display: flex;
-  gap: 24px;
-  margin-top: 32px;
-}
-
-.writing-button {
-  flex: 1;
-  font: 600 13px var(--font-mono);
-  color: var(--ink);
-  border: 1px solid var(--ink);
-  padding: 14px;
-  text-align: center;
-  transition: background 0.15s, color 0.15s;
-}
-
-.writing-button--substack {
-  background: var(--olive);
-}
-
-.writing-button--medium {
-  background: #fffdf7;
-}
-
-.writing-button:hover {
-  background: var(--ink);
-  color: var(--yellow);
-}
-
-/* ============================================================
    responsive — the design is authored at 1440px fixed.
    Below that we scale gutters down and collapse the multi-column
    pieces rather than attempting a true mobile redesign (not yet
    designed; see handoff README "Planned, not yet designed").
    ============================================================ */
 
-@media (max-width: 1200px) {
-  .section {
-    padding: 48px 40px;
-  }
-  .section-inner {
-    padding: 0;
-  }
-}
-
 @media (max-width: 900px) {
-  .writing-title {
-    font-size: 52px;
-  }
-  .writing-buttons {
-    flex-direction: column;
-  }
   .scrollnav-links {
     gap: 18px;
     font-size: 12px;
@@ -1175,9 +1065,6 @@ a.hero14-bio-link:hover {
 }
 
 @media (max-width: 640px) {
-  .section {
-    padding: 40px 20px;
-  }
   .scrollnav {
     padding: 0 16px;
   }
