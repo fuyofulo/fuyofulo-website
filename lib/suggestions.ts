@@ -1,8 +1,7 @@
 import { Redis } from "@upstash/redis";
 
 /* Book suggestions from the reading page's sticky note, newest first.
-   Same Upstash store as the visitor counter; same graceful degradation
-   when the env isn't present (local dev without pulled vars). */
+   Gracefully degrades when the Upstash env isn't present (local dev). */
 
 const LIST_KEY = "book-suggestions";
 const RATE_PREFIX = "rl:suggest:";
