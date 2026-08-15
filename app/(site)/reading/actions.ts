@@ -26,9 +26,10 @@ export async function submitSuggestion(
     return { ok: false, reason: "invalid" };
   }
 
-  const ip =
-    (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() ??
-    "unknown";
+  /* client-controlled header — cap length so it can't bloat the redis key */
+  const ip = (
+    (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown"
+  ).slice(0, 45);
   if (await isRateLimited(ip)) {
     return { ok: false, reason: "rate" };
   }
