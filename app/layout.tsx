@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/next";
 import { Instrument_Serif, Nanum_Pen_Script } from "next/font/google";
 import localFont from "next/font/local";
 import { MusicPlayerProvider } from "../components/site/MusicPlayer";
@@ -78,6 +79,7 @@ export default function RootLayout({
       <body>
         {/* Shared by the hero turntable and the scroll navbar. */}
         <MusicPlayerProvider>{children}</MusicPlayerProvider>
+        <Analytics />
       </body>
     </html>
   );
